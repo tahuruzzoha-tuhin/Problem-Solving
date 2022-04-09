@@ -12,5 +12,5 @@ def seive(n):
             a.append(p)
     return(a)
 
-d = seive(100)
+d = seive(10)
 print(d)
