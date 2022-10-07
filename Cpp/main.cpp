@@ -48,45 +48,16 @@ template< class T > T lcm(T a, T b)
 
 void solve()
 {
-    int n;
-    int a[n];
-    for(int i=0; i<n; i++)
-    {
-        cin >> a[i];
-    }
-    int maxx = -11111, minn=100000;
-    int b, c;
-    for (int i=0; i<n; i++)
-    {
-        if (a[i] > maxx){
-            maxx = a[i];
-            b = i;
-        }
-        if (a[i] < minn){
-            minn = a[i];
-            c = i;
-        }
-
-    }
-
-    cout << c <<' '<< b << endl;
+    
 }
 
 
 int32_t main()
 {
     //config();
-
     int t = 1;
-
     cin >> t;
-
-
     while(t--) solve();
-
     TLE;
-
-
-
     return 0;
 }
