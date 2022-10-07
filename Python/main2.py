@@ -5,17 +5,13 @@
 \**************************************************************"""
 
 
-
-
-
 #!/usr/bin/env python
-from __future__ import division, print_function
 
 import os
 import sys
-import math
+from math import *
 from io import BytesIO, IOBase
-from heapq import heappush,heappop,heapify
+from heapq import heappush, heappop, heapify
 from collections import defaultdict, Counter, deque
 
 if sys.version_info[0] < 3:
@@ -25,6 +21,8 @@ if sys.version_info[0] < 3:
 
 # Start FASTIO
 BUFSIZE = 8192
+
+
 class FastIO(IOBase):
     newlines = 0
 
@@ -88,7 +86,8 @@ if sys.version_info[0] < 3:
 else:
     sys.stdin, sys.stdout = IOWrapper(sys.stdin), IOWrapper(sys.stdout)
 
-input = lambda: sys.stdin.readline().rstrip("\r\n")
+
+def input(): return sys.stdin.readline().rstrip("\r\n")
 
 
 def prod(a, mod=10 ** 9 + 7):
@@ -96,17 +95,17 @@ def prod(a, mod=10 ** 9 + 7):
     for each in a:
         ans = (ans * each) % mod
     return ans
- 
- 
+
+
 def gcd(x, y):
     while y:
         x, y = y, x % y
     return x
- 
- 
+
+
 def lcm(a, b): return a * b // gcd(a, b)
- 
- 
+
+
 def binary(x, length=16):
     y = bin(x)[2:]
     return y if len(y) >= length else "0" * (length - len(y)) + y
@@ -115,28 +114,38 @@ def binary(x, length=16):
 def check_freq(x):
     freq = {}
     for c in set(x):
-       freq[c] = x.count(c)
+        freq[c] = x.count(c)
     return freq
-    
+
+
+def numToDigit(x):
+    box = []
+    while(x):
+        tmp = x % 10
+        x = x//10
+        box.append(tmp)
+    box.reverse()
+    return box
+
 
 def ii(): return int(input())
 def si(): return input()
 def mi(): return map(int, input().strip().split(" "))
 def li(): return list(mi())
+
+
 MAXX = 100000000
 
 
 '''**************Solution is Here***********'''
 
+
 def main():
+    # T = 1
     T = ii()
     for _ in range(T):
         n = ii()
         a = li()
-
-
-
-
 
 
 # End FASTIO

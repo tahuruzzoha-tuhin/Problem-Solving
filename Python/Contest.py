@@ -10,12 +10,12 @@
 
 # # print(*p)
 
-    
+
 # # n = int(input())
 # # a1 = [int(num) for num in input().split(" ", n-1)]
 # # m = int(input())
 # # a2 = [int(num) for num in input().split(" ", m-1)]
- 
+
 # # for item in a1:
 # #     if  item not in a2:
 # #         print(item, end=' ')
@@ -23,14 +23,14 @@
 # # print(a2)
 
 # import sys,os,io
-# import math 
+# import math
 # from collections import defaultdict
 # # def int(input()):
 # #     return int(input())
 # def li():
 #     return list(map(int,input().split()))
 # if(os.path.exists('input.txt')):
-#     sys.stdin = open("input.txt","r") ; sys.stdout = open("output.txt","w") 
+#     sys.stdin = open("input.txt","r") ; sys.stdout = open("output.txt","w")
 # else:
 #     input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
 
@@ -42,7 +42,7 @@
 #         if not x:
 #             x.append(nums[i])
 #             temp[i]=len(x)
-#             continue 
+#             continue
 #         ind = bisect.bisect_left(x,nums[i])
 #         # replace bisect_left by bisect_right for longes non-dec subsequence
 #         if ind==len(x):
@@ -59,7 +59,7 @@
 #         if not x:
 #             x.append(nums[i])
 #             temp[i]=len(x)
-#             continue 
+#             continue
 #         ind = bisect.bisect_left(x,nums[i])
 #         # replace bisect_left by bisect_right for longes non-dec subsequence
 #         if ind==len(x):
@@ -81,7 +81,7 @@
 #     for i in range(n-1):
 #         ans=max(ans,a[i]+b[i+1])
 #     print(ans)
-        
+
 
 
 # ttt = 1
@@ -136,15 +136,20 @@
 
 
 
+#
+#
+#
+#
+#
+# def compute():
+# 	ans = sum(x for x in range(1000) if (x % 3 == 0 or x % 5 == 0))
+# 	return str(ans)
+#
+#
+# if __name__ == "__main__":
+# 	print(compute())
 
 
 
 
 
-def compute():
-	ans = sum(x for x in range(1000) if (x % 3 == 0 or x % 5 == 0))
-	return str(ans)
-
-
-if __name__ == "__main__":
-	print(compute())

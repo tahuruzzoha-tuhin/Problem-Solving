@@ -34,7 +34,7 @@ function main() {
     n = input();
     a = input().split(" ").map(x => parseInt(x));
     a.sort();
-    // console.log(a);
+    console.log(n,a);
     for (let i = 0, j = 1; i < n; i++) {
         if (a[i] == j) {
             j++;

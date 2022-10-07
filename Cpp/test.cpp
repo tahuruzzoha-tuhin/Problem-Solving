@@ -45,7 +45,7 @@ long long int countDigits(long long l)
 
 void solve()
 {
-	long long n;
+	/*long long n;
 	cin >> n;
 	vector<long long> nums;
 	for (int i = 0; i < 5000; i++)
@@ -60,10 +60,18 @@ void solve()
 	for (long long i = 0; i < nums.size(); i++)
 	{
 		cout << nums[i] << "\n";
-	}
+	} */
+
+	int x = 1;
+	int y = x++ + x++ + x++;
+	cout << y << endl;
+	int z = ++x + ++x;
+
+	cout << x << " " << y <<" " << z << endl;
+
 }
 int main()
 {
-	// cout << countDigits(233423423423) << endl;
+	//cout << countDigits(233423423423) << endl;
 	solve();
 }
