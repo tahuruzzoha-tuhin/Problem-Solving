@@ -162,26 +162,106 @@
 
 // A1x+B1y+C1=0
 // A2x+B2y+C2=0
-#include<iostream>
+// #include<iostream>
+// using namespace std;
+// int main()
+// {
+//     int A1, A2, B1, B2, C1, C2;
+//     char x, var1, var2, y, op1, op2, op3, op4;
+//     string equalTozero;
+//     cin >> A1 >> var1 >> op1 >> B1 >> var2 >> op2 >> C1 >> equalTozero;
+//     cin >> A2 >> var1 >> op3 >> B2 >> var2 >> op4 >> C2 >> equalTozero;
+//     cout << endl;
+
+//     //make the coefficint of x positive.
+
+//     y = (A2*C1-A1*C2)/(A1*B2-A2*B1);
+//     x = (-C1-B1*y)/A1;
+
+//     // cout << A1 << x << op1 << B1 << y << op2 << C1 << equalTozero;
+//     // cout << endl;
+//     // cout << A2 << x << op3 << B2 << y << op4 << C2 << equalTozero;
+//     // 
+//     cout << "X = " << x <<" ; " << "Y = " << y;
+//     cout << endl;
+// }
+
+
+#include<bits/stdc++.h>
 using namespace std;
+
+// A1x+B1y+C1=0
+// A2x+B2y+C2=0
+// #include<iostream>
+// using namespace std;
+// int main()
+// {
+//     int A1, A2, B1, B2, C1, C2;
+//     char x, var1, var2, y, op1, op2, op3, op4;
+//     string equalTozero;
+//     cin >> A1 >> var1 >> op1 >> B1 >> var2 >> op2 >> C1 >> equalTozero;
+//     cin >> A2 >> var1 >> op3 >> B2 >> var2 >> op4 >> C2 >> equalTozero;
+//     cout << endl;
+
+//     //make the coefficint of x positive.
+
+//     y = (A2*C1-A1*C2)/(A1*B2-A2*B1);
+//     x = (-C1-B1*y)/A1;
+
+//     // cout << A1 << x << op1 << B1 << y << op2 << C1 << equalTozero;
+//     // cout << endl;
+//     // cout << A2 << x << op3 << B2 << y << op4 << C2 << equalTozero;
+//     // 
+//     cout << "X = " << x <<" ; " << "Y = " << y;
+//     cout << endl;
+// }
+
 int main()
 {
-    int A1, A2, B1, B2, C1, C2;
-    char x, var1, var2, y, op1, op2, op3, op4;
-    string equalTozero;
-    cin >> A1 >> var1 >> op1 >> B1 >> var2 >> op2 >> C1 >> equalTozero;
-    cin >> A2 >> var1 >> op3 >> B2 >> var2 >> op4 >> C2 >> equalTozero;
-    cout << endl;
+    int t = 1;
+    cin >> t;
+    while(t--){
+    int cnt = 0, n = 0;
+    string p;
+    cin >> n >> p;
+    for(int i=0;i<n-1;i++){
 
-    //make the coefficint of x positive.
+        if(p[i]== '1' && cnt%2==0) {
+            cnt++;
+        }
+        //  while (low <= high)
+//     {
+//         mid = (low+high)/2;
+//         if (key==a[mid])
+//         {
+//             printf("Found at: a[%d]\n", mid);
+//             return 0;
+//         }
+//         else if (key < a[mid])
+//         {
+//             high = mid-1;
+//         }
+//         else
+//         {
+//             low = mid+1;
+//         }       
+//     }
+        else if(p[i] == '0' && p[i+1]== '1') {
+            cnt++;
+        }
+    }
+    
+    if(cnt%2==0 && p[n-1]=='0' && p[n-2]=='1')
+    {
+        cnt++;
+    }
+    if(cnt%2!=0 && p[n-1]=='1' && p[n-2]=='0')
+    {
+        cnt++;
+    }
+    cout << cnt << endl;;
+    }
 
-    y = (A2*C1-A1*C2)/(A1*B2-A2*B1);
-    x = (-C1-B1*y)/A1;
-
-    // cout << A1 << x << op1 << B1 << y << op2 << C1 << equalTozero;
-    // cout << endl;
-    // cout << A2 << x << op3 << B2 << y << op4 << C2 << equalTozero;
-    // 
-    cout << "X = " << x <<" ; " << "Y = " << y;
-    cout << endl;
+    return 0;
 }
+

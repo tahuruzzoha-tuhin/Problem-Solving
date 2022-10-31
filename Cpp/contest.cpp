@@ -49,43 +49,25 @@ void config()
 
 void solution()
 {
-
-  int n;
-  cin >> n;
-  int ar[n];
-  for (int i = 0; i < n; i++)
-  {
-    cin >> ar[i];
-  }
-  int Ec = 0, Zc = 1000000000;
-  int i = 0;
-  while (i < n - 1)
-  {
-    if (ar[i] == ar[i + 1])
-    {
-      Zc = min(Zc, i);
-      Ec = max(Ec, i);
+    int p, q, i;
+    cin >> p >> q;
+    int arr[p];
+    for(i=0; i<p; i++) cin >> arr[i];
+    for(i=0; i<p; i++) cout << arr[i] << " ";
+    cout << endl;
+    for(i=0; i<q; i++){
+      cout << i << " ";
+      for(int j=0; j<q; j++){
+        cout << j << " ";
+      }
+      cout << "*" << endl;;
     }
-    ++i;
-  }
-  if (Zc == Ec || Zc == 1000000000)
-  {
-    cout << 0 << endl;
-    return;
-  }
-  if (Ec - Zc < 3)
-  {
-    cout << 1 << endl;
-  }
-  else
-  {
-    cout << ((int)(Ec - Zc - 1)) << endl;
-  }
+    cout << endl;
 }
 int32_t main()
 {
 
-  // config();
+   config();
   int n = 1;
   cin >> n;
   while (n--)
