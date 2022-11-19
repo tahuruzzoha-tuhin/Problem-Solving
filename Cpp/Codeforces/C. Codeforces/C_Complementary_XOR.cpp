@@ -1,6 +1,13 @@
-#include<bits/stdc++.h>
+/****************************************************************\
+                   BISMILLAHIR RAHMANIR RAHIM
+****************************************************************
+               AUTHOR NAME: MD. TAHURUZZOHA TUHIN
+\****************************************************************/
+
+#include <bits/stdc++.h>
 using namespace std;
- 
+
+#define int             long long int
 #define F               first
 #define S               second
 #define PB              push_back
@@ -69,34 +76,101 @@ void config()
 
 }
 
-
-
-struct dataq
-{
-	int a,b,c;
-}box[100001];
-
-int cookies[100000][2];
-
-bool compare_btn(dataq first,dataq second)
-{
-	return first.a < second.a;
-}
-
 void Accepted();
+
+
 int32_t main()
 {
-    // config();
+    config();
     int test_kase = 1;
     cin >> test_kase;
     while(test_kase--) Accepted();
     // TLE;
     return 0;
 }
- 
+
 void Accepted()
 {
-	string s;
-	cin >> s;
-	if(s== "Ye")
+    int n = 0, m = 0, p = 0, q = 0;
+    cin>>n;
+    char s[n];
+    fori(0,n)
+    {
+        cin>>s[i];
+    }
+
+    char b[n];
+    fori(0,n)
+    {
+        cin>>b[i];
+    }
+    int comp[n];
+    fori(0,n)
+    {
+        comp[i]=0;
+    }
+    vector<vector<int>> XOR;
+    XOR.PB({});
+    XOR.PB({});
+    
+    fori(0,n)
+    {
+        int st=i;
+        while(i<n && s[i]=='1')
+        i++;
+        if(st!=i){
+            XOR[0].PB(st+1);
+            XOR[1].push_back(i);
+            comp[0]++;
+            comp[st]--;
+            comp[i]++;
+        }
+    }
+
+    int point=0;
+    int last_point=0;
+    char rest[n];
+    
+    fori(0,n)
+    {
+        last_point+=comp[i];
+        if((b[i]=='0' && last_point%2==1) || (b[i]=='1' && last_point%2==0))
+        {
+        rest[i]='1';
+        }
+        else 
+        rest[i]='0';
+    }
+
+    fori(0,n-1)
+    {
+        if(rest[i]!=rest[i+1])
+        point=1;
+    }
+
+    if(point==0)
+    {
+       cout<<"YES"<<endl;
+       if(rest[0]=='1')
+       {
+           XOR[0].PB(1);
+           XOR[1].PB(n);
+           XOR[0].PB(1);
+           XOR[1].PB(1);
+           XOR[0].PB(2);
+           XOR[1].PB(n);
+       }
+        cout<<XOR[0].size()<<endl;
+
+        for(int i=0; i<XOR[0].size(); i++)
+        {
+            cout<<XOR[0][i]<<" "<<XOR[1][i]<<endl;
+        }
+
+
+   }
+    else cout<<"NO"<<endl;
+
 }
+
+

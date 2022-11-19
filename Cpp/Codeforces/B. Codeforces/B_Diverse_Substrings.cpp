@@ -1,6 +1,13 @@
-#include<bits/stdc++.h>
+/****************************************************************\
+                   BISMILLAHIR RAHMANIR RAHIM
+****************************************************************
+               AUTHOR NAME: MD. TAHURUZZOHA TUHIN
+\****************************************************************/
+
+#include <bits/stdc++.h>
 using namespace std;
- 
+
+#define int             long long int
 #define F               first
 #define S               second
 #define PB              push_back
@@ -23,6 +30,7 @@ using namespace std;
 #define MAX_RNG         1024
 #define print(x)        cout << x << endl
 #define fori(v,n)       for(int i=v; i<n; i++)
+#define fori1(i,s,e)    for(int i=s;i<e;i++)
 #define ford(n,v)       for(int i=n; i>v; i--)
 #define fora(i, a, n)   for (int i = a; i < n; ++i)
 #define forad(i, a, n)  for (int i = a; i > n; --i)
@@ -69,34 +77,43 @@ void config()
 
 }
 
-
-
-struct dataq
-{
-	int a,b,c;
-}box[100001];
-
-int cookies[100000][2];
-
-bool compare_btn(dataq first,dataq second)
-{
-	return first.a < second.a;
-}
-
 void Accepted();
+
+
 int32_t main()
 {
-    // config();
+    config();
     int test_kase = 1;
     cin >> test_kase;
     while(test_kase--) Accepted();
     // TLE;
     return 0;
 }
- 
+
 void Accepted()
 {
-	string s;
-	cin >> s;
-	if(s== "Ye")
+    int n, res=0 , chan = 0, up = 0;
+    string s;
+    cin>> n >> s;
+    fori(0,n)
+    {
+        vi Diverse(10);
+        chan = 0; up = i+110;
+        fori1(j,i,min(up,n))
+        {
+            auto val = s[j]-'0';
+
+            if(Diverse[val]==0)
+            {
+                chan++;
+            }
+            Diverse[val]++;
+
+            if(*max_element(all(Diverse))<=chan)
+            {
+                res++;
+            }
+        }
+    }
+    cout << res << endl;
 }

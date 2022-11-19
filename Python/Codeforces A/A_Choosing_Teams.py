@@ -1,4 +1,3 @@
-
 """**************************************************************\
                    BISMILLAHIR RAHMANIR RAHIM
 ****************************************************************
@@ -10,11 +9,10 @@
 
 import os
 import sys
-from collections import Counter, defaultdict, deque
-from heapq import heapify, heappop, heappush
-# from math import *
 from io import BytesIO, IOBase
-
+from heapq import heappush, heappop, heapify
+from collections import defaultdict, Counter, deque
+import math,sys;input=sys.stdin.readline;S=lambda:input().rstrip();I=lambda:int(S());M=lambda:map(int,S().split());L=lambda:list(M());mod1=1000000007;mod2=998244353
 if sys.version_info[0] < 3:
     from __builtin__ import xrange as range
     from future_builtins import ascii, filter, hex, map, oct, zip
@@ -90,7 +88,7 @@ else:
 
 def input(): return sys.stdin.readline().rstrip("\r\n")
 
-YESYES="YesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYes"
+
 def prod(a, mod=10 ** 9 + 7):
     ans = 1
     for each in a:
@@ -134,22 +132,34 @@ def si(): return input()
 def mi(): return map(int, input().strip().split(" "))
 def li(): return list(mi())
 
+
 MAXX = 100000000
+
 
 '''**************Solution is Here***********'''
 
+
 def main():
 
-    T=int(input())
-    for _ in range(T):
-        check = input()
-        if YESYES.find(check) >= 0:
-            print("YES")
-        else:
-            print("NO")
 
-            
+    for _ in range(I()):
+        n=I();a=list(S());b=list(S());c=0;ans=[]
+        for i in range(n):
+            if a[i]=='1':a[i]='0';b[i]=str(1-int(b[i]));c=(c+1)%2;ans.append([i+1,i+1])
+        if c==1:
+            for i in range(n):b[i]=str(1-int(b[i]))
+        if ''.join(b)=='0'*n:
+            print("YES");print(len(ans))
+            for i in ans:print(*i)
+        elif ''.join(b)=='1'*n:
+            ans.append([1,n])
+            ans.append([1,1])
+            if n>1:ans.append([2,n])
+            print("YES");print(len(ans))
+            for i in ans:print(*i)
+        else:print("NO")
 # End FASTIO
 if __name__ == "__main__":
     main()
+
 

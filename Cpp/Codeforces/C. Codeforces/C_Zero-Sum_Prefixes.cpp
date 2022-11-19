@@ -1,6 +1,13 @@
-#include<bits/stdc++.h>
+/****************************************************************\
+                   BISMILLAHIR RAHMANIR RAHIM
+****************************************************************
+               AUTHOR NAME: MD. TAHURUZZOHA TUHIN
+\****************************************************************/
+
+#include <bits/stdc++.h>
 using namespace std;
- 
+
+#define int             long long int
 #define F               first
 #define S               second
 #define PB              push_back
@@ -20,7 +27,7 @@ using namespace std;
 #define sortd(v)        sort(rall(v))
 #define double          long double
 #define MAX_CAP         1e9
-#define MAX_RNG         1024
+#define MAX_RNG         200001
 #define print(x)        cout << x << endl
 #define fori(v,n)       for(int i=v; i<n; i++)
 #define ford(n,v)       for(int i=n; i>v; i--)
@@ -60,7 +67,7 @@ void file()
     freopen("output.txt", "w+", stdout);
     #endif
 }
-
+ 
 void config()
 {
     ios_base::sync_with_stdio(false);
@@ -69,34 +76,70 @@ void config()
 
 }
 
-
-
-struct dataq
-{
-	int a,b,c;
-}box[100001];
-
-int cookies[100000][2];
-
-bool compare_btn(dataq first,dataq second)
-{
-	return first.a < second.a;
-}
-
 void Accepted();
+
+
 int32_t main()
 {
-    // config();
+    config();
     int test_kase = 1;
     cin >> test_kase;
     while(test_kase--) Accepted();
     // TLE;
     return 0;
 }
- 
+
 void Accepted()
 {
-	string s;
-	cin >> s;
-	if(s== "Ye")
+
+    int N, zero_sum = 0, ans = 0;
+    bool flag = 0;
+    mii Prefix;
+    cin >> N;
+    for(int i = 0; i < N; i++)
+    {
+        cin >> globalArr[i];
+    }
+
+    for(int i = 0; i < N; i++)
+    {
+        if(globalArr[i] == 0)
+        {
+            if(flag)
+            {
+                int mx = 0;
+                for(pii j : Prefix)
+                {
+                    mx = max(mx, j.second);
+                }
+                ans += mx;
+            }
+            else
+            {
+                flag = 1;
+                ans += Prefix[0];
+            }
+            Prefix.clear();
+            Prefix[0] = 1;
+            zero_sum = 0;
+            continue;
+        }
+        zero_sum += globalArr[i];
+        Prefix[zero_sum]++;
+    }
+    if(flag)
+    {
+        int mx = 0;
+        for(pii j : Prefix)
+        {
+            mx = max(mx, j.second);
+        }
+        ans += mx;
+    }
+    else
+    {
+        ans += Prefix[0];
+    }
+    cout << ans << endl;
+	
 }

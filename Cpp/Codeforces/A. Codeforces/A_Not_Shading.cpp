@@ -1,6 +1,13 @@
-#include<bits/stdc++.h>
+/****************************************************************\
+                   BISMILLAHIR RAHMANIR RAHIM
+****************************************************************
+               AUTHOR NAME: MD. TAHURUZZOHA TUHIN
+\****************************************************************/
+
+#include <bits/stdc++.h>
 using namespace std;
- 
+
+#define int             long long int
 #define F               first
 #define S               second
 #define PB              push_back
@@ -20,7 +27,7 @@ using namespace std;
 #define sortd(v)        sort(rall(v))
 #define double          long double
 #define MAX_CAP         1e9
-#define MAX_RNG         1024
+#define MAX_RNG         200001
 #define print(x)        cout << x << endl
 #define fori(v,n)       for(int i=v; i<n; i++)
 #define ford(n,v)       for(int i=n; i>v; i--)
@@ -60,7 +67,7 @@ void file()
     freopen("output.txt", "w+", stdout);
     #endif
 }
-
+ 
 void config()
 {
     ios_base::sync_with_stdio(false);
@@ -69,34 +76,47 @@ void config()
 
 }
 
-
-
-struct dataq
-{
-	int a,b,c;
-}box[100001];
-
-int cookies[100000][2];
-
-bool compare_btn(dataq first,dataq second)
-{
-	return first.a < second.a;
-}
-
 void Accepted();
+
+
 int32_t main()
 {
-    // config();
+    config();
     int test_kase = 1;
     cin >> test_kase;
     while(test_kase--) Accepted();
     // TLE;
     return 0;
 }
- 
+
 void Accepted()
 {
-	string s;
-	cin >> s;
-	if(s== "Ye")
+
+    int b = -1, n, m, r, c;
+    cin >> n >> m >> r >> c;
+    for(int i=1; i<=n; i++)
+    {
+        for(int j=1; j<=m;  j++)
+        {
+            char a;
+            cin >> a;
+            if(a == 'W')
+            {
+                continue;
+            }
+            if( i == r && j == c)
+            {
+                b = 0;
+            }
+            if((i == r || j == c) && b != 0)
+            {
+                b = 1;
+            }
+            if(b == -1)
+            {
+                b = 2;
+            }
+        }
+    }
+    cout << b << endl;	
 }

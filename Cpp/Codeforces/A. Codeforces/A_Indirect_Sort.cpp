@@ -1,6 +1,13 @@
-#include<bits/stdc++.h>
+/****************************************************************\
+                   BISMILLAHIR RAHMANIR RAHIM
+****************************************************************
+               AUTHOR NAME: MD. TAHURUZZOHA TUHIN
+\****************************************************************/
+
+#include <bits/stdc++.h>
 using namespace std;
- 
+
+#define int             long long int
 #define F               first
 #define S               second
 #define PB              push_back
@@ -69,34 +76,25 @@ void config()
 
 }
 
-
-
-struct dataq
-{
-	int a,b,c;
-}box[100001];
-
-int cookies[100000][2];
-
-bool compare_btn(dataq first,dataq second)
-{
-	return first.a < second.a;
-}
-
 void Accepted();
+
+
 int32_t main()
 {
-    // config();
+    config();
     int test_kase = 1;
     cin >> test_kase;
     while(test_kase--) Accepted();
     // TLE;
     return 0;
 }
- 
+
 void Accepted()
 {
-	string s;
-	cin >> s;
-	if(s== "Ye")
+    int n = 0, m = 0, p = 0, q = 0;
+    cin >> n; int arr[n];
+    fori(0,n) cin >> arr[i];
+    if(arr[0] == 1) cout << "Yes" << endl;
+    else cout << "No" << endl;
+
 }

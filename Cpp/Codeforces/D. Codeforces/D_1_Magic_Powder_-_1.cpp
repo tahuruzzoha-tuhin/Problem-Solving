@@ -1,6 +1,12 @@
+/****************************************************************\
+                   BISMILLAHIR RAHMANIR RAHIM
+****************************************************************
+               AUTHOR NAME: MD. TAHURUZZOHA TUHIN
+\****************************************************************/
 #include<bits/stdc++.h>
 using namespace std;
- 
+
+#define int             long long int
 #define F               first
 #define S               second
 #define PB              push_back
@@ -88,7 +94,7 @@ int32_t main()
 {
     // config();
     int test_kase = 1;
-    cin >> test_kase;
+    // cin >> test_kase;
     while(test_kase--) Accepted();
     // TLE;
     return 0;
@@ -96,7 +102,64 @@ int32_t main()
  
 void Accepted()
 {
-	string s;
-	cin >> s;
-	if(s== "Ye")
+	int n,k;
+	cin >> n >> k;
+	for(int i=0;i<n;i++)
+	{
+		cin >> cookies[i][1];
+	}
+	for(int i=0;i<n;i++)
+	{
+		cin >> cookies[i][0];
+	}
+	for(int i=0;i<n;i++)
+	{
+		if(cookies[i][1])
+		{
+			box[i].a=cookies[i][0]/cookies[i][1];
+			box[i].b=cookies[i][0]%cookies[i][1];
+			box[i].c=cookies[i][1];
+		}
+		else
+		{
+			box[i].a=0x7FFFFFFF;
+			box[i].b=0;
+			box[i].c=0;
+		}
+	}
+	sort(box,box+n,compare_btn);
+	box[n].a=0x7FFFFFFF;
+	int plus=0,min=0,find=box[0].a,need=0,left=0,right=0;
+	while(k)
+	{
+		min=box[plus].a;
+		int m=plus;
+		while(min==box[m].a)
+		{
+			need+=box[m].c-box[m].b;
+			left+=box[m].c;
+			m++;
+		}
+		if(k>=need+right)
+		{
+			k-=need+right;
+			need=0;
+			min++;
+			find=min;
+		}
+		else
+			break;
+		if(k<left*(box[m].a-min))
+		{
+			int u=k/left;
+			find+=u;
+			break;
+		}
+		k-=left*(box[m].a-min);
+		min=box[m].a;
+		find=min;
+		plus=m;
+		right=left;
+	}
+	cout << find << endl;
 }

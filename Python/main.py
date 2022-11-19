@@ -1,114 +1,185 @@
-# a, b = map(int, input().split())
- 
-# x = list(map(int, input().split()))
+# """**************************************************************\
+#                    BISMILLAHIR RAHMANIR RAHIM
+# ****************************************************************
+#                AUTHOR NAME: MD. TAHURUZZOHA TUHIN
+# \**************************************************************"""
 
-# print(x)
 
-import sys,math,cmath,time,collections
-start_time = time.time()
-##########################################################################
-################# ---- THE ACTUAL CODE STARTS BELOW ---- #################
- 
- 
+# #!/usr/bin/env python
 
- 
-#---------------------- USER DEFINED INPUT FUNCTIONS ----------------------#
-def inp():
-    return(int(input()))
-def inlt():
-    return(list(map(int,input().split())))
-def insr():
-    return(input().strip())
-def invr():
-    return(map(int,input().split()))
- 
-#------------------ USER DEFINED PROGRAMMING FUNCTIONS ------------------#
-def counter(a):
-    q = [0] * max(a)
-    for i in range(len(a)):
-        q[a[i] - 1] = q[a[i] - 1] + 1
-    return(q)
- 
-def counter_elements(a):
-    q = dict()
-    for i in range(len(a)):
-        if a[i] not in q:
-            q[a[i]] = 0
-        q[a[i]] = q[a[i]] + 1
-    return(q)
- 
-def string_counter(a):
-    q = [0] * 26
-    for i in range(len(a)):
-        q[ord(a[i]) - 97] = q[ord(a[i]) - 97] + 1
-    return(q)
- 
-def factorial(n,m = 1000000007):
-    q = 1
-    for i in range(n):
-        q = (q * (i + 1)) % m
-    return(q)
- 
-def factors(n):
-    q = []
-    for i in range(1,int(n ** 0.5) + 1):
-        if n % i == 0: q.append(i); q.append(n // i)
-    return(list(sorted(list(set(q)))))
- 
-def prime_factors(n):
-    q = []
-    while n % 2 == 0: q.append(2); n = n // 2
-    for i in range(3,int(n ** 0.5) + 1,2):
-        while n % i == 0: q.append(i); n = n // i
-    if n > 2: q.append(n)
-    return(list(sorted(q)))
- 
-def transpose(a):
-    n,m = len(a),len(a[0])
-    b = [[0] * n for i in range(m)]
-    for i in range(m): 
-        for j in range(n): 
-            b[i][j] = a[j][i]
-    return(b)
- 
-def power_two(x):
-    return (x and (not(x & (x - 1))))
- 
-def ceil(a, b):
-    return -(-a // b)
- 
-def seive(n):
-    a = [1]
-    prime = [True for i in range(n+1)] 
-    p = 2
-    while (p * p <= n): 
-        if (prime[p] == True): 
-            for i in range(p ** 2,n + 1, p): 
-                prime[i] = False
-        p = p + 1
-    for p in range(2,n + 1): 
-        if prime[p]: 
-            a.append(p)
-    return(a)
-#-----------------------------------------------------------------------#
-def main():
-    global tt
-    if not ONLINE_JUDGE:
-        sys.stdin = open("input.txt","r")
-        sys.stdout = open("output.txt","w")
-    t = 1
-    t = inp()
-    for tt in range(1,t + 1):
-        solve()
-    if not ONLINE_JUDGE:
-        print("Time Elapsed :",time.time() - start_time,"seconds")
-        sys.stdout.close()
+# import os
+# import sys
+# from math import *
+# from io import BytesIO, IOBase
+# from heapq import heappush, heappop, heapify
+# from collections import defaultdict, Counter, deque
 
-    # s=input()
-    # check="".join(sorted(s))
-ONLINE_JUDGE = __debug__
-if ONLINE_JUDGE:
-    import io,os
-    input = io.BytesIO(os.read(0,os.fstat(0).st_size)).readline
-    #input = sys.stdin.readline 
-main()
+# if sys.version_info[0] < 3:
+#     from __builtin__ import xrange as range
+#     from future_builtins import ascii, filter, hex, map, oct, zip
+
+
+# # Start FASTIO
+# BUFSIZE = 8192
+
+
+# class FastIO(IOBase):
+#     newlines = 0
+
+#     def __init__(self, file):
+#         self._file = file
+#         self._fd = file.fileno()
+#         self.buffer = BytesIO()
+#         self.writable = "x" in file.mode or "r" not in file.mode
+#         self.write = self.buffer.write if self.writable else None
+
+#     def read(self):
+#         while True:
+#             b = os.read(self._fd, max(os.fstat(self._fd).st_size, BUFSIZE))
+#             if not b:
+#                 break
+#             ptr = self.buffer.tell()
+#             self.buffer.seek(0, 2), self.buffer.write(b), self.buffer.seek(ptr)
+#         self.newlines = 0
+#         return self.buffer.read()
+
+#     def readline(self):
+#         while self.newlines == 0:
+#             b = os.read(self._fd, max(os.fstat(self._fd).st_size, BUFSIZE))
+#             self.newlines = b.count(b"\n") + (not b)
+#             ptr = self.buffer.tell()
+#             self.buffer.seek(0, 2), self.buffer.write(b), self.buffer.seek(ptr)
+#         self.newlines -= 1
+#         return self.buffer.readline()
+
+#     def flush(self):
+#         if self.writable:
+#             os.write(self._fd, self.buffer.getvalue())
+#             self.buffer.truncate(0), self.buffer.seek(0)
+
+
+# class IOWrapper(IOBase):
+#     def __init__(self, file):
+#         self.buffer = FastIO(file)
+#         self.flush = self.buffer.flush
+#         self.writable = self.buffer.writable
+#         self.write = lambda s: self.buffer.write(s.encode("ascii"))
+#         self.read = lambda: self.buffer.read().decode("ascii")
+#         self.readline = lambda: self.buffer.readline().decode("ascii")
+
+
+# def print(*args, **kwargs):
+#     sep, file = kwargs.pop("sep", " "), kwargs.pop("file", sys.stdout)
+#     at_start = True
+#     for x in args:
+#         if not at_start:
+#             file.write(sep)
+#         file.write(str(x))
+#         at_start = False
+#     file.write(kwargs.pop("end", "\n"))
+#     if kwargs.pop("flush", False):
+#         file.flush()
+
+
+# if sys.version_info[0] < 3:
+#     sys.stdin, sys.stdout = FastIO(sys.stdin), FastIO(sys.stdout)
+# else:
+#     sys.stdin, sys.stdout = IOWrapper(sys.stdin), IOWrapper(sys.stdout)
+
+
+# def input(): return sys.stdin.readline().rstrip("\r\n")
+
+
+# def prod(a, mod=10 ** 9 + 7):
+#     ans = 1
+#     for each in a:
+#         ans = (ans * each) % mod
+#     return ans
+
+
+# def gcd(x, y):
+#     while y:
+#         x, y = y, x % y
+#     return x
+
+
+# def lcm(a, b): return a * b // gcd(a, b)
+
+
+# def binary(x, length=16):
+#     y = bin(x)[2:]
+#     return y if len(y) >= length else "0" * (length - len(y)) + y
+
+
+# def check_freq(x):
+#     freq = {}
+#     for c in set(x):
+#         freq[c] = x.count(c)
+#     return freq
+
+
+# def numToDigit(x):
+#     box = []
+#     while(x):
+#         tmp = x % 10
+#         x = x//10
+#         box.append(tmp)
+#     box.reverse()
+#     return box
+
+
+# def ii(): return int(input())
+# def si(): return input()
+# def mi(): return map(int, input().strip().split(" "))
+# def li(): return list(mi())
+
+# MAXX = 100000000
+
+# '''**************Solution is Here***********'''
+
+# def main():
+#     T = 1
+#     # T = ii()
+#     for _ in range(T):
+#         string1 = si().lower()
+#         string2 = si().lower()
+        
+#         if string1 == string2:
+#             print(0)
+#         elif string1 < string2:
+#             print(-1)
+#         elif string1 > string2:
+#             print(1)
+        
+        
+# # End FASTIO
+# if __name__ == "__main__":
+#     main()
+
+# score of an array is the sum of its subarray that equal to zero
+
+# input for test cases
+T = int(input())
+
+# function to get subarrays
+def get_subarrays(array):
+    length = len(array)
+    return [array[i:j+1] for i in range(length) for j in range(i,length)]
+
+# write a function to get the score of an array
+def get_score(array):
+    # get all subarrays of the array
+    subarrays = get_subarrays(array)
+    # get the score of the array
+    return sum([sum(subarray) == 0 for subarray in subarrays])
+
+# iterate over test cases
+for i in range(T):
+    # read input for n
+    n = int(input())
+    # read input for array with length n
+    array = [int(x) for x in input().split()]
+    # get the score of the array
+    result = get_score(array)
+    # print the result
+    print(result)

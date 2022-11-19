@@ -1,6 +1,13 @@
-#include<bits/stdc++.h>
+/****************************************************************\
+                   BISMILLAHIR RAHMANIR RAHIM
+****************************************************************
+               AUTHOR NAME: MD. TAHURUZZOHA TUHIN
+\****************************************************************/
+
+#include <bits/stdc++.h>
 using namespace std;
- 
+
+#define int             long long int
 #define F               first
 #define S               second
 #define PB              push_back
@@ -60,7 +67,7 @@ void file()
     freopen("output.txt", "w+", stdout);
     #endif
 }
-
+ 
 void config()
 {
     ios_base::sync_with_stdio(false);
@@ -69,34 +76,41 @@ void config()
 
 }
 
-
-
-struct dataq
-{
-	int a,b,c;
-}box[100001];
-
-int cookies[100000][2];
-
-bool compare_btn(dataq first,dataq second)
-{
-	return first.a < second.a;
-}
-
 void Accepted();
+
+
 int32_t main()
 {
-    // config();
+    config();
     int test_kase = 1;
     cin >> test_kase;
     while(test_kase--) Accepted();
     // TLE;
     return 0;
 }
- 
+
 void Accepted()
 {
-	string s;
-	cin >> s;
-	if(s== "Ye")
+    int a = 0, b = 0, d = 0, count = 0, num = 1, bitOr = 0, shift = 0, res = 0, p = 0;
+    cin >> a >> b >> d;
+    while( d%2 == 0 )
+    {
+        d /= 2; 
+        num *= 2; 
+    }
+    bitOr = a|b;
+    if( bitOr%num != 0)
+    {
+        cout << -1 << endl;
+
+    }
+    shift = (1<<30) % d;
+    if(shift)
+    {
+        p = 1/shift;
+    }
+    count = (-bitOr * (p % d)) % d;
+    // cout << "Count:" << count << endl;
+    res = (count<<30 ) + bitOr;
+    cout << res << endl;
 }

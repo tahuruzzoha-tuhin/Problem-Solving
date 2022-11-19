@@ -1,6 +1,13 @@
-#include<bits/stdc++.h>
+/****************************************************************\
+                   BISMILLAHIR RAHMANIR RAHIM
+****************************************************************
+               AUTHOR NAME: MD. TAHURUZZOHA TUHIN
+\****************************************************************/
+
+#include <bits/stdc++.h>
 using namespace std;
- 
+
+#define int             long long int
 #define F               first
 #define S               second
 #define PB              push_back
@@ -65,38 +72,82 @@ void config()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr); cout.tie(nullptr);
-    // file();
+    file();
+
+}
+
+
+void Accepted()
+{
+    int n = 0, m = 0, Perm = 1, mutation = 0, Lost = INT_MIN;
+    cin >> n >> m;
+    si uniq;
+
+    for(int i=0; i<n; i++)
+    {
+        cin>>globalArr[i];
+        uniq.insert(globalArr[i]);
+    }
+
+
+    while(Perm)
+    {
+        if(uniq.find(Perm)!=uniq.end())
+        {
+            Perm++;
+            continue;
+        }
+        mutation+=Perm;
+
+        if(mutation>m)
+        {
+            cout<<"NO"<<endl;
+            break;
+        }
+
+        for(int i=0; i<n; i++)
+        {
+            if(Lost<globalArr[i])
+            Lost=globalArr[i];
+        }
+
+        uniq.insert(Perm);
+        if(mutation==m)
+        {
+            int flag=0;
+            for(int i=1; i<=Lost; i++)
+            {
+                if(uniq.find(i)!=uniq.end())
+                {
+
+                    continue;
+                }
+                flag=1;
+                break;
+            }
+            if(!flag) 
+            {
+                print("YES");
+            }
+            else
+            {
+                print("NO");
+            } 
+            break;
+        }
+        Perm++;
+    }
 
 }
 
 
 
-struct dataq
-{
-	int a,b,c;
-}box[100001];
-
-int cookies[100000][2];
-
-bool compare_btn(dataq first,dataq second)
-{
-	return first.a < second.a;
-}
-
-void Accepted();
 int32_t main()
 {
-    // config();
+    config();
     int test_kase = 1;
     cin >> test_kase;
     while(test_kase--) Accepted();
     // TLE;
     return 0;
-}
- 
-void Accepted()
-{
-	string s;
-	cin >> s;
-	if(s== "Ye")
 }

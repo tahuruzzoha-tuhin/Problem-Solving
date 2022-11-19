@@ -1,6 +1,13 @@
-#include<bits/stdc++.h>
+/****************************************************************\
+                   BISMILLAHIR RAHMANIR RAHIM
+****************************************************************
+               AUTHOR NAME: MD. TAHURUZZOHA TUHIN
+\****************************************************************/
+
+#include <bits/stdc++.h> 
 using namespace std;
- 
+
+#define intt             long long int
 #define F               first
 #define S               second
 #define PB              push_back
@@ -34,6 +41,21 @@ template <class T> void vin(vector<T>& v)
         cin >> v[i];
     } 
 }
+template <class T> T exponent(T a, long long b) 
+{ 
+    T ptr= 1; 
+    while (b) 
+    { 
+        if (b & 1) 
+        {
+            ptr *= a; 
+    }
+    b >>= 1; 
+    a *= a; 
+    } 
+    return ptr; 
+}
+
 template <class T> void vout(const vector<T>& v) 
 { 
     fori(i, sz(v))
@@ -65,38 +87,58 @@ void config()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr); cout.tie(nullptr);
+    cout << setprecision(15) << fixed;
     // file();
 
 }
 
-
-
-struct dataq
-{
-	int a,b,c;
-}box[100001];
-
-int cookies[100000][2];
-
-bool compare_btn(dataq first,dataq second)
-{
-	return first.a < second.a;
-}
-
 void Accepted();
+
+
 int32_t main()
 {
-    // config();
+    config();
     int test_kase = 1;
     cin >> test_kase;
     while(test_kase--) Accepted();
     // TLE;
     return 0;
 }
- 
+
 void Accepted()
 {
-	string s;
-	cin >> s;
-	if(s== "Ye")
+    intt goodprc, incr, ans = 0;
+    cin >> goodprc >> incr;
+    intt round = goodprc;
+
+    array<int, 2> multiDim = {0, 0};
+
+    while (goodprc % 2 == 0) 
+    {
+        multiDim[0]++;
+        goodprc /= 2;
+    }
+    
+    while (goodprc % 5 == 0) 
+    {
+        multiDim[1]++;
+        goodprc /= 5;
+    }
+
+    goodprc = round;
+    for (int i = 1; i < 20; i++)
+     {
+        int64_t singleDim = exponent((int64_t)5, max(i - multiDim[1], 0));
+        singleDim *= exponent((int64_t)2, max(i - multiDim[0], 0));
+
+        int64_t oneThird = (incr / singleDim) * singleDim;
+
+        if (oneThird) 
+        {
+            ans = oneThird * goodprc;
+        }
+    }
+    print((ans ? ans : goodprc * incr));
+
 }
+

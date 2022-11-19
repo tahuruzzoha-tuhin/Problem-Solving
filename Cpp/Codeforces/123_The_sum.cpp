@@ -1,6 +1,13 @@
-#include<bits/stdc++.h>
+/****************************************************************\
+                   BISMILLAHIR RAHMANIR RAHIM
+****************************************************************
+               AUTHOR NAME: MD. TAHURUZZOHA TUHIN
+\****************************************************************/
+
+#include <bits/stdc++.h>
 using namespace std;
- 
+
+#define int             long long int
 #define F               first
 #define S               second
 #define PB              push_back
@@ -69,34 +76,51 @@ void config()
 
 }
 
+void Accepted();
+const int MAX = 1000;
 
+int f[MAX] = {0};
 
-struct dataq
+int fib(int n)
 {
-	int a,b,c;
-}box[100001];
+	if (n == 0)
+		return 0;
+	if (n == 1 || n == 2)
+		return (f[n] = 1);
 
-int cookies[100000][2];
+	if (f[n])
+		return f[n];
 
-bool compare_btn(dataq first,dataq second)
-{
-	return first.a < second.a;
+	int k = (n & 1)? (n+1)/2 : n/2;
+
+	f[n] = (n & 1)? (fib(k)*fib(k) + fib(k-1)*fib(k-1)) : (2*fib(k-1) + fib(k))*fib(k);
+
+	return f[n];
 }
 
-void Accepted();
+int calculateSum(int n)
+{
+	return fib(n+2) - 1;
+}
+
+
 int32_t main()
 {
-    // config();
+    config();
     int test_kase = 1;
-    cin >> test_kase;
+    // cin >> test_kase;
     while(test_kase--) Accepted();
     // TLE;
     return 0;
 }
- 
+
 void Accepted()
 {
-	string s;
-	cin >> s;
-	if(s== "Ye")
+    int n = 0, m = 0, p = 0, q = 0;
+    cin >> n;
+	cout << calculateSum(n) << endl;
+    
 }
+
+
+

@@ -1,6 +1,13 @@
-#include<bits/stdc++.h>
+/****************************************************************\
+                   BISMILLAHIR RAHMANIR RAHIM
+****************************************************************
+               AUTHOR NAME: MD. TAHURUZZOHA TUHIN
+\****************************************************************/
+
+#include <bits/stdc++.h>
 using namespace std;
- 
+
+#define int             long long int
 #define F               first
 #define S               second
 #define PB              push_back
@@ -69,34 +76,42 @@ void config()
 
 }
 
-
-
-struct dataq
-{
-	int a,b,c;
-}box[100001];
-
-int cookies[100000][2];
-
-bool compare_btn(dataq first,dataq second)
-{
-	return first.a < second.a;
-}
-
 void Accepted();
+
+
 int32_t main()
 {
-    // config();
+    config();
     int test_kase = 1;
     cin >> test_kase;
     while(test_kase--) Accepted();
     // TLE;
     return 0;
 }
- 
+
 void Accepted()
 {
-	string s;
-	cin >> s;
-	if(s== "Ye")
+    int n = 0, m = 0, p = 0, q = 0, r = 0, s = 0, t = 0;
+    cin >> n >> m;
+
+    vi tina_mental;
+    for(int i=1; i<=n; i++)
+    {
+        for(int j=1; j<=m; j++)
+        {
+            p = abs(i-1) + abs(j-1);
+            q = abs(i-n) + abs(j-1);
+            r = abs(i-1) + abs(j-m);
+            s = abs(i-n) + abs(j-m);
+            t = max(max(p,q), max(r,s));
+            tina_mental.PB(t);
+        }
+    }
+    sort(tina_mental.begin(), tina_mental.end());
+    for(auto x:tina_mental)
+    {
+        cout << x << " ";
+    }
+    cout << endl;
+
 }

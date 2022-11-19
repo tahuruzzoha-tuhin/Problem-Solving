@@ -1,6 +1,13 @@
-#include<bits/stdc++.h>
+/****************************************************************\
+                   BISMILLAHIR RAHMANIR RAHIM
+****************************************************************
+               AUTHOR NAME: MD. TAHURUZZOHA TUHIN
+\****************************************************************/
+
+#include <bits/stdc++.h>
 using namespace std;
- 
+
+#define int             long long int 
 #define F               first
 #define S               second
 #define PB              push_back
@@ -41,6 +48,11 @@ template <class T> void vout(const vector<T>& v)
         cout << v[i] << " \n"[i + 1 == vsz(v)];
     } 
 }
+
+template <class T> using Priority_back = std::priority_queue<T>;
+
+template <class T> using Priority_front = std::priority_queue<T, vector<T>, greater<T>>;
+
 template< class T > T gcd(T a, T b)
 {
     return (b != 0 ? gcd<T>(b, a%b) : a);
@@ -69,34 +81,65 @@ void config()
 
 }
 
-
-
-struct dataq
-{
-	int a,b,c;
-}box[100001];
-
-int cookies[100000][2];
-
-bool compare_btn(dataq first,dataq second)
-{
-	return first.a < second.a;
-}
-
 void Accepted();
+
+
 int32_t main()
 {
-    // config();
+    config();
     int test_kase = 1;
     cin >> test_kase;
     while(test_kase--) Accepted();
     // TLE;
     return 0;
 }
- 
+
 void Accepted()
 {
-	string s;
-	cin >> s;
-	if(s== "Ye")
+    int n, h; cin >> n >> h;
+    vi Hum(n);
+    for(auto &i : Hum) 
+    {
+        cin >> i;
+    }
+
+    auto sol = [&](vi power, int astronauts, vi absorb) -> int {
+
+        Priority_front<int> pq(power.begin(), power.end());
+        int ans = 0;
+
+        while (!pq.empty()) 
+        {
+            int x = pq.top();
+            if (x < astronauts) 
+            {
+                astronauts += x / 2;
+                ans++;
+                pq.pop();
+                continue;
+            } 
+            else if (!absorb.empty()) 
+            {
+                int m = absorb.back();
+                absorb.pop_back();
+                astronauts *= m;
+                continue;
+            } 
+            else 
+            {
+                break;
+            }
+        }
+        return ans;
+    };
+
+    int res = 0;
+    vi muilti = {2, 2, 3};
+    do {
+        int r1 = sol(Hum, h, muilti);
+        res = max(res, r1);
+    } while (next_permutation(muilti.begin(), muilti.end()));
+
+    print(res);
+
 }

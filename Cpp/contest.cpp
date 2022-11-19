@@ -67,7 +67,7 @@ void solution()
 int32_t main()
 {
 
-   config();
+//   config();
   int n = 1;
   cin >> n;
   while (n--)

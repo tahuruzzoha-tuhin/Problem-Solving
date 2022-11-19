@@ -3,7 +3,7 @@
 #include<algorithm>
 using namespace std;
 
-typedef long long ll;
+typedef long long intt;
 typedef pair<int, int> ii;
 const int sz = 100010;
 int x[sz], h[sz];

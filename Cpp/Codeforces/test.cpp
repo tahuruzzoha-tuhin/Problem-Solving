@@ -81,7 +81,7 @@
 
 using namespace std;
 
-typedef long long ll;
+typedef long long intt;
 typedef vector<int> vi;
 
 const int MAXN = 1e6 + 7;
