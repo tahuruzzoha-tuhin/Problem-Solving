@@ -9,24 +9,18 @@
 
 import os
 import sys
-from collections import Counter, defaultdict, deque
-from heapq import heapify, heappop, heappush
 from io import BytesIO, IOBase
 from math import *
 
 if sys.version_info[0] < 3:
-
- from __builtin__ import xrange as range
- from future_builtins import ascii, filter, hex, map, oct, zip
+    from __builtin__ import xrange as range
+    from future_builtins import ascii, filter, hex, map, oct, zip
 
 
 # Start FASTIO
 BUFSIZE = 8192
-
-
 class FastIO(IOBase):
     newlines = 0
-
     def __init__(self, file):
         self._file = file
         self._fd = file.fileno()

@@ -834,46 +834,24 @@ def binarySearch1(arr, n, key):
             res=mid
             left = mid + 1
     return res
-#---------------------------------running code------------------------------------------
+
+def ii(): return int(input())
+def si(): return input()
+def mi(): return map(int, input().strip().split(" "))
+def li(): return list(mi())
+
+
+MAXX = 100000000
+
+
+'''**************Solution is Here***********'''
+
 def main():
     tt=1
     tt=int(input())
     for _ in range (tt):
-        #input()
-        n=int(input())
-        #n,m=map(int,input().split())
-        #a=list(map(int,input().split()))
-        #b=list(map(int,input().split()))
-        #s=input()
-        #n=len(s)
-        d=defaultdict(list)
-        ch=1
-        for i in range (n-1):
-            x,y=map(int,input().split())
-            x-=1
-            y-=1
-            d[x].append([y,i])
-            d[y].append([x,i])
-            if len(d[x])>2 or len(d[y])>2:
-                ch=0
-        if not ch:
-            print(-1)
-            continue
-        ans=[0]*(n-1)
-        def dfs(par,node,prev):
-            if prev==2:
-                curr=3
-            else:
-                curr=2
-            for neigh, ind in d[node]:
-                if neigh != par:
-                    ans[ind]=curr
-                    dfs(node,neigh,curr)
-        for i in range (n):
-            if len(d[i])==1:
-                dfs(-1,i,2)
-                break
-        print(*ans)
+        n, k = li()
+        a = li()
         
 t = threading.Thread(target=main)
 t.start()
