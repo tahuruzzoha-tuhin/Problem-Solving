@@ -4,7 +4,7 @@
                AUTHOR NAME: MD. TAHURUZZOHA TUHIN
 \****************************************************************/
 
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 #define int             long long int
@@ -13,7 +13,6 @@ using namespace std;
 #define PB              push_back
 #define si              set <int>
 #define vi              vector <int>
-#define qi              queue <int32_t>
 #define pii             pair <int, int>
 #define vpii            vector <pii>
 #define vpp             vector <pair <int, pii>>
@@ -21,6 +20,7 @@ using namespace std;
 #define mpi             map <pii, int>
 #define spi             set <pii>
 #define endl            "\n"
+#define xorr             &
 #define vsz(x)          ((int) x.size())
 #define all(p)          p.begin(), p.end()
 #define rall(p)         p.rbegin(), p.rend()
@@ -29,7 +29,9 @@ using namespace std;
 #define double          long double
 #define MAX_CAP         1e9
 #define MAX_RNG         1024
-#define print(x)        cout << x << endl
+#define print1(x)        cout << x << " "
+#define print2(x, y)     cout << x << " " << y << " "
+#define print3(x,y,z)    cout << x << " " << y << " " << z << " ";
 #define fori(v,n)       for(int i=v; i<n; i++)
 #define ford(n,v)       for(int i=n; i>v; i--)
 #define fora(i, a, n)   for (int i = a; i < n; ++i)
@@ -93,77 +95,28 @@ int32_t main()
 
 void Accepted()
 {
-    int n = 0, m = 0, p = 0;
-    cin >> n; char Construct[n][n];
-    int ind[n] = {0};
-    
-    vector<vi> Set;
-    vector<vi> adjPair;
-    qi Binary;
-
-    for(int i=0; i<n; i++)
+    int n = 0, m = 0, p = 0, q = 0;
+    cin >> n; if(n==2)
     {
-        for(int j=0; j<n; j++)
+        print2(1,3);
+    }
+    else if(n xorr 1)
+    {
+        fori(1, n+1)
         {
-            cin >> Construct[i][j];
+            print1(1);
         }
+        cout << endl;
     }
-
-    for(int i=0; i<n; i++)
+    else
     {
-        Set.PB({i+1});
-    }
-
-    for(int i=0; i<n; i++)
-    {
-        adjPair.PB({});
-        for(int j=0; j<n; j++)
+        print3(1,2,3);
+        fori(4, n+1)
         {
-            if(Construct[i][j] == '1')
-            {
-                adjPair[i].PB(j);
-                ind[j]++;
-            }
+            print1(2);
         }
-    }
-
-    for(int i=0; i<n; i++)
-    {
-        if(ind[i] == 0)
-        {
-            Binary.push(i);
-        }
-    }
-
-    while(!Binary.empty())
-    {
-        int let = Binary.front();
-        Binary.pop();
-
-        for(int i=0; i<adjPair[let].size(); i++)
-        {
-            int carry = adjPair[let][i];
-            ind[carry]--;
-            Set[carry].PB(let+1);
-            if(ind[carry] == 0)
-            {
-                Binary.push(carry);
-            }
-        }
+        cout << endl;
 
     }
-
-    for(int i=0; i<n; i++)
-    {
-        cout << Set[i].size() << endl;
-
-        sort(Set[i].begin(), Set[i].end());
-
-        for(int j=0; j<Set[i].size(); j++)
-        {
-            cout << Set[i][j] << " ";
-        }
-    }
-    cout << endl;
 
 }

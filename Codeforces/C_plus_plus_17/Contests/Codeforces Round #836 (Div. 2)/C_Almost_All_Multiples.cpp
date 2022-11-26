@@ -4,7 +4,7 @@
                AUTHOR NAME: MD. TAHURUZZOHA TUHIN
 \****************************************************************/
 
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 #define int             long long int
@@ -13,7 +13,6 @@ using namespace std;
 #define PB              push_back
 #define si              set <int>
 #define vi              vector <int>
-#define qi              queue <int32_t>
 #define pii             pair <int, int>
 #define vpii            vector <pii>
 #define vpp             vector <pair <int, pii>>
@@ -27,10 +26,14 @@ using namespace std;
 #define sorta(v)        sort(all(v))
 #define sortd(v)        sort(rall(v))
 #define double          long double
+#define Df              50
 #define MAX_CAP         1e9
 #define MAX_RNG         1024
+#define MAX_CHK         200000000
+#define MAX_LMP         500000000
 #define print(x)        cout << x << endl
 #define fori(v,n)       for(int i=v; i<n; i++)
+#define forii(v,n,m)    for(int i=v; i<n && i*i<=m; i++)
 #define ford(n,v)       for(int i=n; i>v; i--)
 #define fora(i, a, n)   for (int i = a; i < n; ++i)
 #define forad(i, a, n)  for (int i = a; i > n; --i)
@@ -74,7 +77,7 @@ void config()
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr); cout.tie(nullptr);
     cout << setprecision(15) << fixed;
-    // file();
+    file();
 
 }
 
@@ -83,7 +86,7 @@ void Accepted();
 
 int32_t main()
 {
-    config();
+    // config();
     int test_kase = 1;
     cin >> test_kase;
     while(test_kase--) Accepted();
@@ -93,76 +96,46 @@ int32_t main()
 
 void Accepted()
 {
-    int n = 0, m = 0, p = 0;
-    cin >> n; char Construct[n][n];
-    int ind[n] = {0};
-    
-    vector<vi> Set;
-    vector<vi> adjPair;
-    qi Binary;
+    int n = 0, x = 0, k = 0, q = 0;
+    cin >> n >> x;
 
-    for(int i=0; i<n; i++)
+    vi Multiples; Multiples.PB(0); 
+    Multiples.PB(x); q = n >> Df;
+
+    if(n%x != 0 || q==x)
     {
-        for(int j=0; j<n; j++)
+        cout << -1 << endl;
+        return;
+    }
+
+    fori(2, n)
+    {
+        if(k==MAX_CHK)
         {
-            cin >> Construct[i][j];
+            cout << -1 << endl;
+            return;
+        }
+        Multiples.PB(i);
+    }
+    Multiples.PB(1);
+    k = n/x;
+    forii(2,MAX_LMP,k)
+    {
+        while(n/x %i ==0)
+        {
+            Multiples[x] = x*i;
+            x = x*i;
         }
     }
 
-    for(int i=0; i<n; i++)
+    if(x<n)
     {
-        Set.PB({i+1});
+        Multiples[x] = n;
     }
 
-    for(int i=0; i<n; i++)
+    fori(1, n+1)
     {
-        adjPair.PB({});
-        for(int j=0; j<n; j++)
-        {
-            if(Construct[i][j] == '1')
-            {
-                adjPair[i].PB(j);
-                ind[j]++;
-            }
-        }
-    }
-
-    for(int i=0; i<n; i++)
-    {
-        if(ind[i] == 0)
-        {
-            Binary.push(i);
-        }
-    }
-
-    while(!Binary.empty())
-    {
-        int let = Binary.front();
-        Binary.pop();
-
-        for(int i=0; i<adjPair[let].size(); i++)
-        {
-            int carry = adjPair[let][i];
-            ind[carry]--;
-            Set[carry].PB(let+1);
-            if(ind[carry] == 0)
-            {
-                Binary.push(carry);
-            }
-        }
-
-    }
-
-    for(int i=0; i<n; i++)
-    {
-        cout << Set[i].size() << endl;
-
-        sort(Set[i].begin(), Set[i].end());
-
-        for(int j=0; j<Set[i].size(); j++)
-        {
-            cout << Set[i][j] << " ";
-        }
+        cout << Multiples[i] << " ";
     }
     cout << endl;
 

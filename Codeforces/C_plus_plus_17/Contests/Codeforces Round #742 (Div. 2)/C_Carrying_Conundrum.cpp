@@ -4,7 +4,7 @@
                AUTHOR NAME: MD. TAHURUZZOHA TUHIN
 \****************************************************************/
 
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 #define int             long long int
@@ -13,7 +13,6 @@ using namespace std;
 #define PB              push_back
 #define si              set <int>
 #define vi              vector <int>
-#define qi              queue <int32_t>
 #define pii             pair <int, int>
 #define vpii            vector <pii>
 #define vpp             vector <pair <int, pii>>
@@ -93,77 +92,39 @@ int32_t main()
 
 void Accepted()
 {
-    int n = 0, m = 0, p = 0;
-    cin >> n; char Construct[n][n];
-    int ind[n] = {0};
-    
-    vector<vi> Set;
-    vector<vi> adjPair;
-    qi Binary;
-
-    for(int i=0; i<n; i++)
+    int n = 0, m = 0, p = 0, q = 0;
+    string a="", b="", s;
+    cin >> s;
+    n = s.length();
+    fori(0,n)
     {
-        for(int j=0; j<n; j++)
+        if(i%2 == 0)
         {
-            cin >> Construct[i][j];
+            a += s[i];
+        }
+        else 
+        {
+            b += s[i];
         }
     }
 
-    for(int i=0; i<n; i++)
+    if( a.length() > 0 )
     {
-        Set.PB({i+1});
+        m = stoi(a);
+    }
+    else 
+    {
+        m = 0;
+    }
+    if( b.length() > 0)
+    {
+        p = stoi(b);
+    }
+    else 
+    {
+        p = 0;
     }
 
-    for(int i=0; i<n; i++)
-    {
-        adjPair.PB({});
-        for(int j=0; j<n; j++)
-        {
-            if(Construct[i][j] == '1')
-            {
-                adjPair[i].PB(j);
-                ind[j]++;
-            }
-        }
-    }
-
-    for(int i=0; i<n; i++)
-    {
-        if(ind[i] == 0)
-        {
-            Binary.push(i);
-        }
-    }
-
-    while(!Binary.empty())
-    {
-        int let = Binary.front();
-        Binary.pop();
-
-        for(int i=0; i<adjPair[let].size(); i++)
-        {
-            int carry = adjPair[let][i];
-            ind[carry]--;
-            Set[carry].PB(let+1);
-            if(ind[carry] == 0)
-            {
-                Binary.push(carry);
-            }
-        }
-
-    }
-
-    for(int i=0; i<n; i++)
-    {
-        cout << Set[i].size() << endl;
-
-        sort(Set[i].begin(), Set[i].end());
-
-        for(int j=0; j<Set[i].size(); j++)
-        {
-            cout << Set[i][j] << " ";
-        }
-    }
-    cout << endl;
+    cout << p*(m+1) + 1*(m-1) << endl;
 
 }
