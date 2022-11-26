@@ -19,7 +19,7 @@ int odd(int k, int cnt)
 {
 	k=k*3+1;
 	cnt+=1;
-	if(k==1) return cnt;	
+	if(k==1) return cnt;
 	else if (k%2==0) return even(k, cnt);
 	else if (k%2!=0) return odd(k, cnt);
 	return cnt;
@@ -29,7 +29,7 @@ int max(int n3[], int n)
 {
 	int m=n3[0];
 	for (int i = 0; i < n; ++i)
-		if (n3[i]>m) 
+		if (n3[i]>m)
 			m=n3[i];
 	return m;
 }
@@ -47,8 +47,8 @@ int main()
 			if (i%2==0)	 n3[j]=even(i, cnt);
 			else if(i%2!=0) n3[j]=odd(i, cnt);
 		}
-		printf("%d %d %d\n",a,b,max(n3, n));					 	
-}
-	
+		printf("%d %d %d\n",a,b,max(n3, n));
+    }
+
 	return 0;
 }
