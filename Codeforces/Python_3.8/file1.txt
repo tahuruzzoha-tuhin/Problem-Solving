@@ -1,3 +1,0 @@
-    Hello EnableGeek!!!
-    This is second line in the file.
-    This is third one.
