@@ -30,6 +30,7 @@ using namespace std;
 #define MAX_RNG         1024
 #define print(x)        cout << x << endl
 #define fori(v,n)       for(int i=v; i<n; i++)
+#define forj(v,n)       for(int j=v; j<n; j++)
 #define ford(n,v)       for(int i=n; i>v; i--)
 #define fora(i, a, n)   for (int i = a; i < n; ++i)
 #define forad(i, a, n)  for (int i = a; i > n; --i)
@@ -72,36 +73,12 @@ void config()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr); cout.tie(nullptr);
+    cout << setprecision(15) << fixed;
     // file();
 
 }
 
 void Accepted();
-const int MAX = 1000;
-
-int f[MAX] = {0};
-
-int memo(int n)
-{
-	if (n == 0)
-		return 0;
-	if (n == 1 || n == 2)
-		return (f[n] = 1);
-
-	if (f[n])
-		return f[n];
-
-	int k = (n & 1)? (n+1)/2 : n/2;
-
-	f[n] = (n & 1)? (memo(k)*memo(k) + memo(k-1)*memo(k-1)) : (2*memo(k-1) + memo(k))*memo(k);
-
-	return f[n];
-}
-
-int calculateSum(int n)
-{
-	return memo(n+2) - 1;
-}
 
 
 int32_t main()
@@ -116,11 +93,60 @@ int32_t main()
 
 void Accepted()
 {
-    int n = 0, m = 0, p = 0, q = 0;
-    cin >> n;
-	cout << calculateSum(n) << endl;
+    int n = 0, m = 0, p = 1, q = 0;
+    cin >> n; int arr[n]={0}, M = 1;
+
+    si newarr;
+    fori(1,n+1) 
+    {
+        cin >> arr[i];
+        q+=arr[i];
+    }
+    fori(1,n+1) 
+    {
+        newarr.insert(arr[i]);
+    }
     
+    for(auto x:newarr)
+    {
+        if(arr[m] != x)
+        {
+            p++;
+            m++;
+        }
+    }
+    
+    if(q%2 != 0)
+    {
+        print("NO");
+        return;
+    }
+    fori(2,n+1)
+    {
+        if( arr[M] < arr[i])
+        {
+            p += arr[M];
+            M = i;
+        }
+    }
+
+    forj(0, 2)
+    {
+        m = 0, p = 0;
+        newarr.clear();
+        fori(1, n+1)
+        {
+            m += arr[i];
+            newarr.insert(arr[i]);
+            p = m-(q/2);
+            if(newarr.find(p) != newarr.end())
+            {
+                print("YES");
+                return;
+            }
+        }
+        reverse(arr+1, arr+n+1);
+    }
+    print("NO");    
+
 }
-
-
-

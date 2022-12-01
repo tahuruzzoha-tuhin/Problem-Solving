@@ -72,36 +72,12 @@ void config()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr); cout.tie(nullptr);
-    // file();
+    cout << setprecision(15) << fixed;
+    file();
 
 }
 
 void Accepted();
-const int MAX = 1000;
-
-int f[MAX] = {0};
-
-int memo(int n)
-{
-	if (n == 0)
-		return 0;
-	if (n == 1 || n == 2)
-		return (f[n] = 1);
-
-	if (f[n])
-		return f[n];
-
-	int k = (n & 1)? (n+1)/2 : n/2;
-
-	f[n] = (n & 1)? (memo(k)*memo(k) + memo(k-1)*memo(k-1)) : (2*memo(k-1) + memo(k))*memo(k);
-
-	return f[n];
-}
-
-int calculateSum(int n)
-{
-	return memo(n+2) - 1;
-}
 
 
 int32_t main()
@@ -117,10 +93,37 @@ int32_t main()
 void Accepted()
 {
     int n = 0, m = 0, p = 0, q = 0;
-    cin >> n;
-	cout << calculateSum(n) << endl;
-    
+    cin >> n; int arr[n];
+
+    vi a(n+2);
+    fori(1,n+1) cin >> a[i];
+
+    int total(0);
+    stack <int> s;
+    s.push(0);
+    fori(0,n+2) 
+    {
+        while(a[s.top()] > a[i])
+        {
+            int pos = s.top();
+            s.pop();
+            total -= (i-pos)*(pos - s.top())*a[pos];
+        }
+        s.push(i);
+    }
+    s.push(0);
+    a[0] = 1e18;
+    a[n+1] = 1e18;
+    fori(1, n+2)
+    {
+        while(a[s.top()] < a[i])
+        {
+            int pos = s.top();
+            s.pop();
+            total += (i-pos)*(pos-s.top())*a[pos];
+        }
+        s.push(i);
+    }
+
+    cout << total << endl;
 }
-
-
-

@@ -26,8 +26,10 @@ using namespace std;
 #define sorta(v)        sort(all(v))
 #define sortd(v)        sort(rall(v))
 #define double          long double
-#define MAX_CAP         1e9
+#define MAX_CAP         5000000
 #define MAX_RNG         1024
+#define input1(x)       cin >> x
+#define input2(x, y)    cin >> x >> y
 #define print(x)        cout << x << endl
 #define fori(v,n)       for(int i=v; i<n; i++)
 #define ford(n,v)       for(int i=n; i>v; i--)
@@ -72,36 +74,16 @@ void config()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr); cout.tie(nullptr);
+    cout << setprecision(15) << fixed;
     // file();
 
 }
 
+int term[MAX_CAP];
+int arr[MAX_CAP];
+
+int memo(int n);
 void Accepted();
-const int MAX = 1000;
-
-int f[MAX] = {0};
-
-int memo(int n)
-{
-	if (n == 0)
-		return 0;
-	if (n == 1 || n == 2)
-		return (f[n] = 1);
-
-	if (f[n])
-		return f[n];
-
-	int k = (n & 1)? (n+1)/2 : n/2;
-
-	f[n] = (n & 1)? (memo(k)*memo(k) + memo(k-1)*memo(k-1)) : (2*memo(k-1) + memo(k))*memo(k);
-
-	return f[n];
-}
-
-int calculateSum(int n)
-{
-	return memo(n+2) - 1;
-}
 
 
 int32_t main()
@@ -117,10 +99,52 @@ int32_t main()
 void Accepted()
 {
     int n = 0, m = 0, p = 0, q = 0;
-    cin >> n;
-	cout << calculateSum(n) << endl;
-    
+    input2(n,m); 
+    fori(0,n) 
+    {
+        cin >> arr[i];
+    }
+
+    // fori(0,n)
+    // {
+    //     p += memo(arr[i]);
+    // }
+
+
+    // fori(0,MAX_CAP)
+    // {
+    //     term[i] = 0;
+    // }
+
+    // q = memo(m);
+    // int ans = p%q;
+    print(memo(49));
+    // if(ans) 
+    // {
+    //     print("No");
+    // }
+    // else
+    // {
+    //     print("Yes");
+    // }
+
 }
 
+int memo(int n)
+{
 
+	if (n == 0)
+    {
+        return 1;
+    }	
+    if (term[n] != 0)
+	{
+        return term[n];
+    }
+	else 
+    {
+		term[n] = n * memo(n - 1);
+		return term[n];
+	}
+}
 

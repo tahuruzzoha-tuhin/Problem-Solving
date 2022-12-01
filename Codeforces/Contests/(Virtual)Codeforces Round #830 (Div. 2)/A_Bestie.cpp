@@ -72,43 +72,19 @@ void config()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr); cout.tie(nullptr);
+    cout << setprecision(15) << fixed;
     // file();
 
 }
 
 void Accepted();
-const int MAX = 1000;
-
-int f[MAX] = {0};
-
-int memo(int n)
-{
-	if (n == 0)
-		return 0;
-	if (n == 1 || n == 2)
-		return (f[n] = 1);
-
-	if (f[n])
-		return f[n];
-
-	int k = (n & 1)? (n+1)/2 : n/2;
-
-	f[n] = (n & 1)? (memo(k)*memo(k) + memo(k-1)*memo(k-1)) : (2*memo(k-1) + memo(k))*memo(k);
-
-	return f[n];
-}
-
-int calculateSum(int n)
-{
-	return memo(n+2) - 1;
-}
 
 
 int32_t main()
 {
     config();
     int test_kase = 1;
-    // cin >> test_kase;
+    cin >> test_kase;
     while(test_kase--) Accepted();
     // TLE;
     return 0;
@@ -116,11 +92,25 @@ int32_t main()
 
 void Accepted()
 {
-    int n = 0, m = 0, p = 0, q = 0;
-    cin >> n;
-	cout << calculateSum(n) << endl;
-    
+    int n = 0, m = 0, p = 0, q = 3;
+    cin >> n; int arr[n+10]={0}, brr[n+10]={0};
+    fori(1,n+1) cin >> arr[i];
+    fori(1,n+1)
+    {
+        p = __gcd(arr[i], p);
+    }
+
+    if(p==1)
+    {
+        q = 0;
+    }
+    fori(1, n+1)
+    {
+        if(__gcd(i,p) == 1)
+        {
+            q = min(q, n-i+1);
+        }
+    }
+    cout << q << endl;
+
 }
-
-
-

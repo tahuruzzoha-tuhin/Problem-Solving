@@ -72,36 +72,12 @@ void config()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr); cout.tie(nullptr);
+    cout << setprecision(3) << fixed;
     // file();
 
 }
 
 void Accepted();
-const int MAX = 1000;
-
-int f[MAX] = {0};
-
-int memo(int n)
-{
-	if (n == 0)
-		return 0;
-	if (n == 1 || n == 2)
-		return (f[n] = 1);
-
-	if (f[n])
-		return f[n];
-
-	int k = (n & 1)? (n+1)/2 : n/2;
-
-	f[n] = (n & 1)? (memo(k)*memo(k) + memo(k-1)*memo(k-1)) : (2*memo(k-1) + memo(k))*memo(k);
-
-	return f[n];
-}
-
-int calculateSum(int n)
-{
-	return memo(n+2) - 1;
-}
 
 
 int32_t main()
@@ -116,11 +92,12 @@ int32_t main()
 
 void Accepted()
 {
-    int n = 0, m = 0, p = 0, q = 0;
-    cin >> n;
-	cout << calculateSum(n) << endl;
-    
+    double n = 0, m = 0, p = 0, q = 0;
+    int t; cin >> t;
+    while(t--)
+    {
+        cin >> n >> m;
+        p += n*m;
+    }
+    print(p);
 }
-
-
-

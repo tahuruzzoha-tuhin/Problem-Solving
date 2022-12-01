@@ -72,43 +72,19 @@ void config()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr); cout.tie(nullptr);
+    cout << setprecision(15) << fixed;
     // file();
 
 }
 
 void Accepted();
-const int MAX = 1000;
-
-int f[MAX] = {0};
-
-int memo(int n)
-{
-	if (n == 0)
-		return 0;
-	if (n == 1 || n == 2)
-		return (f[n] = 1);
-
-	if (f[n])
-		return f[n];
-
-	int k = (n & 1)? (n+1)/2 : n/2;
-
-	f[n] = (n & 1)? (memo(k)*memo(k) + memo(k-1)*memo(k-1)) : (2*memo(k-1) + memo(k))*memo(k);
-
-	return f[n];
-}
-
-int calculateSum(int n)
-{
-	return memo(n+2) - 1;
-}
 
 
 int32_t main()
 {
     config();
     int test_kase = 1;
-    // cin >> test_kase;
+    cin >> test_kase;
     while(test_kase--) Accepted();
     // TLE;
     return 0;
@@ -116,11 +92,53 @@ int32_t main()
 
 void Accepted()
 {
-    int n = 0, m = 0, p = 0, q = 0;
-    cin >> n;
-	cout << calculateSum(n) << endl;
+    int n = 0, m = 0, p = 0, q = 0, r = 0;
+    cin >> n >> m >> p >> q >> r; int o = 1;
+    if(m<o and m>n and q<o and r>n) 
+    {
+        print(0);
+        return;
+    }
+    else if(m<o or p>n)
+    {
+        int mn1 = min(q,r);
+        int mn2 = min(n-q+o, n-r+o);
+        int mn3 = min(mn1, mn2);
+        print(mn3); return;
+    }
+    else if(q<o or r>n)
+    {
+        int mn1 = min(m,p);
+        int mn2 = min(n-m+o, n-p+o);
+        int mn3 = min(mn1, mn2);
+        print(mn3); return;
+    }
+    int mn1 = min(m,p);
+    int mn12 = min(n-m+o, n-p+o);
+    int mn13 = min(mn1, mn12);
     
+    int mn2 = min(q,r);
+    int mn22 = min(n-q+o, n-r+o);
+    int mn23 = min(mn2, mn22);
+    int ans = 0;
+    if(m-q < 0)
+    {
+        ans += -(m-q);
+    }
+    else
+    {
+        ans += (m-q);
+    }
+    if(p-r < 0)
+    {
+        ans += -(p-r);
+    }
+    else
+    {
+        ans += (p-r);
+    }
+
+    ans = min(ans, mn13+mn23);
+    print(ans);
+
 }
-
-
-

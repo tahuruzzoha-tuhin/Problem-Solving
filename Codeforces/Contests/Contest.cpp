@@ -27,7 +27,7 @@ using namespace std;
 #define sortd(v)        sort(rall(v))
 #define double          long double
 #define MAX_CAP         1e9
-#define MAX_RNG         1024
+#define maxn            1024*2
 #define print(x)        cout << x << endl
 #define fori(v,n)       for(int i=v; i<n; i++)
 #define ford(n,v)       for(int i=n; i>v; i--)
@@ -56,9 +56,25 @@ template< class T > T lcm(T a, T b)
 {
     return (a / gcd<T>(a, b) * b);
 }
+char  otp[maxn];
+int mainn()
+{
+    string inp;
+	cin >> inp;
+	int l = inp.length();
+	for(int i = 0; i < l; i++)
+    {
+        cout << inp[i];
+    }
+	for(int i = l - 1; i >= 0; i--)
+    {
+        cout << inp[i];
+    }
+	cout << endl;
+	return 0;
+ } 
 
-
-int globalArr[MAX_RNG];
+int globalArr[12];
 
 void file()
 {
@@ -72,36 +88,12 @@ void config()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr); cout.tie(nullptr);
+    cout << setprecision(15) << fixed;
     // file();
 
 }
 
 void Accepted();
-const int MAX = 1000;
-
-int f[MAX] = {0};
-
-int memo(int n)
-{
-	if (n == 0)
-		return 0;
-	if (n == 1 || n == 2)
-		return (f[n] = 1);
-
-	if (f[n])
-		return f[n];
-
-	int k = (n & 1)? (n+1)/2 : n/2;
-
-	f[n] = (n & 1)? (memo(k)*memo(k) + memo(k-1)*memo(k-1)) : (2*memo(k-1) + memo(k))*memo(k);
-
-	return f[n];
-}
-
-int calculateSum(int n)
-{
-	return memo(n+2) - 1;
-}
 
 
 int32_t main()
@@ -117,10 +109,9 @@ int32_t main()
 void Accepted()
 {
     int n = 0, m = 0, p = 0, q = 0;
-    cin >> n;
-	cout << calculateSum(n) << endl;
-    
+    // cin >> n; int arr[n];
+    // fori(0,n) cin >> arr[i];
+    mainn();
+    // fori(0,n) cout << arr[i] << " ";
+
 }
-
-
-
