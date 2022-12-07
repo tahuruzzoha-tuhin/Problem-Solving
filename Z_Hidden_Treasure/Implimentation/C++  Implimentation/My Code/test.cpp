@@ -43,35 +43,7 @@ long long int countDigits(long long l)
 	return 1;
 }
 
-void solve()
-{
-	/*long long n;
-	cin >> n;
-	vector<long long> nums;
-	for (int i = 0; i < 5000; i++)
-	{
-		for (int j = i; j < 5000; j++)
-		{
-			long long a = (i + j) * (i * i + j * j);
-			nums.push_back(a);
-		}
-	}
-	sort(nums.begin(), nums.end());
-	for (long long i = 0; i < nums.size(); i++)
-	{
-		cout << nums[i] << "\n";
-	} */
-
-	int x = 1;
-	int y = x++ + x++ + x++;
-	cout << y << endl;
-	int z = ++x + ++x;
-
-	cout << x << " " << y <<" " << z << endl;
-
-}
 int main()
 {
-	//cout << countDigits(233423423423) << endl;
-	solve();
+	cout << countDigits(1) << endl;
 }
