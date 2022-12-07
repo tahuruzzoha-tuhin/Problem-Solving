@@ -93,8 +93,72 @@ int32_t main()
 void Accepted()
 {
     int n = 0, m = 0, p = 0, q = 0;
-    cin >> n; int arr[n];
-    fori(0,n) cin >> arr[i];
-    fori(0,n) cout << arr[i] << " ";
+    int cumsum = 0LL, index = -1;
 
+    cin >> n; vi arr;
+    fori(0,n+2)
+    {
+        cin >> m;
+        arr.PB(m);
+    }
+
+    sort(arr.begin(), arr.end());
+
+
+    fori(0,n)
+    {
+        cumsum += arr[i];
+    }
+
+    if( cumsum == arr[n] || cumsum == arr[n+1])
+    {
+        fori(0,n)
+        {
+            if( i< n-1)
+            {
+                cout << arr[i] << " ";
+            } 
+            else 
+            {
+                cout << arr[i] << endl;    
+            }
+        }
+        return;
+    }
+
+    cumsum += arr[n];
+    fori(0, n+1)
+    {
+        if( cumsum - arr[i] == arr.back())
+        {
+            index = i;
+            break;
+        }
+    }
+
+    if(index == -1)
+    {
+        cout << -1 << endl;
+        return;
+    }
+    else
+    {
+        int j= 0;
+        fori(0,n+1)
+        {
+            if( i == index)
+            {
+                continue;
+            }
+            if( j < n-1)
+            {
+                cout << arr[i] << ' ';
+            }
+            else
+            {
+                cout << arr[i] << endl;
+            }
+            j++;
+        }
+    }
 }

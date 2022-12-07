@@ -17,6 +17,7 @@ using namespace std;
 #define vpii            vector <pii>
 #define vpp             vector <pair <int, pii>>
 #define mii             map <int, int>
+#define umii            unordered_map <int, int>
 #define mpi             map <pii, int>
 #define spi             set <pii>
 #define endl            "\n"
@@ -94,7 +95,30 @@ void Accepted()
 {
     int n = 0, m = 0, p = 0, q = 0;
     cin >> n; int arr[n];
+    
+    umii cnt;
     fori(0,n) cin >> arr[i];
-    fori(0,n) cout << arr[i] << " ";
+    fori(0,n)
+    {
+        // cout << arr[i] << " " << i << " " << arr[i]-i << endl;
+        cnt[arr[i] - i]++; 
+        // cout << cnt[arr[i]-i]  << endl;
+        // for(auto x:cnt)
+        // {
+            // cout << x.F << " " << x.S << endl;
+        // }
+        // print(" ");
+
+    }
+
+    for(auto v : cnt)
+    {
+        p += v.S * (v.S-1)/2;
+    }
+    print(p);
+    // for(auto v : cnt)
+    // {
+    //    cout << v.F << " " << v.S << endl;
+    // }
 
 }
