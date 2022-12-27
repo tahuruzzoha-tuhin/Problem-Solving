@@ -77,27 +77,6 @@ void config()
 
 }
 
-void swap(int* x, int* y){
-    int tmp = *x;
-    *x = *y;
-    *y = tmp;
-}
-
-void bubblesort(int arr[], int n){
-    int i, j;
-    for(i=0; i<n-1; i++){
-        for(j=0; j<n-i-1; j++){
-            if(arr[j]>arr[j+1]){
-                swap(&arr[j], &arr[j+1]);
-            }
-        }
-
-        for(int i=0; i<n; i++){
-            cout << arr[i] << " ";
-        }
-        cout << endl;
-    }
-}
 
 void Accepted();
 
@@ -114,12 +93,21 @@ int32_t main()
 
 void Accepted()
 {
-    int n = 0, m = 0, p = 0, q = 0;
-    cin >>n;
-    int arr[n]; 
+    int n = 0, m = INT_MAX, p = 0, q = 0;
+    cin >> n; 
+    int arr[n], brr[n];
     for(int i=0; i<n; i++){
-        cin >> arr[i];
+        cin >> p;
+        m = min(m, p);
+        arr[i] = p;
     }
 
-    bubblesort(arr,n);
+    for(int i=0; i<n; i++){
+        if(m == arr[i]){
+            cout << i << endl;
+            return;
+        }
+    }
+
+
 }
