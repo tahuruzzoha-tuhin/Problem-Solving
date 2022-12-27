@@ -91,7 +91,7 @@ int32_t main()
 }
 
 void Accepted()
-{
+{ 
     int n = 0, m = 0, p = 0, q = 0;
     cin >> n; int arr[n];
     fori(0,n) cin >> arr[i];
