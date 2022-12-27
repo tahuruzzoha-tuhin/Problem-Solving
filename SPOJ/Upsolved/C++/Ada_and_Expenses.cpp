@@ -90,33 +90,35 @@ int32_t main()
     return 0;
 }
 int const mod = 1e9+7;
+int const mx_len = 2e6+5;
+int psum[mx_len];
+
 void Accepted()
 {
     int n = 0, m = 1, p = 0, q = 0;
     string s;
     cin >> s;
     n = s.size();
-    // vi sum;
-    // sum.PB(n);
-    int psum[n];
-    psum[0] = m;
-    for(int i=1; i<n; i++)
+    psum[1] = m;
+    for(int i=2; i<mx_len; i++)
     {
-        psum[i] = ((psum[i-1] * 10)%mod + 1) % mod; 
+        psum[i] = ((psum[i-1] * 10)) % mod; 
+        psum[i] = (psum[i] + 1) % mod; 
     }
-    for(int i=0; i<=n; i++)
+    for(int i=0; i<mx_len; i++)
     {
         cout << psum[i] << " ";
     }
     int xsum = 0;
     for(int i=0; i<n; i++)
     { 
-        int x = (s[i])-'0';
-        xsum += (psum[n-i-1]% mod * (i+1)% mod * x% mod) % mod; 
-        // print(xsum);
+        int tmp = psum[n-i];
+        tmp = ((i+1) * tmp) % mod;
+
+        int x = ((s[i])-'0') % mod;
+        tmp = (x * tmp) % mod;
+
+        xsum = (xsum + tmp) % mod;
     }
-        print(xsum);
-
-
-
+    print(xsum);
 }
