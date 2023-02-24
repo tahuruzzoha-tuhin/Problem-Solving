@@ -7,41 +7,43 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define lli             long long int
+#define int             long long int
 #define F               first
 #define S               second
 #define PB              push_back
-#define si              set <lli>
-#define vi              vector <lli>
-#define pii             pair <lli, lli>
+#define si              set <int>
+#define vi              vector <int>
+#define pii             pair <int, int>
 #define vpii            vector <pii>
-#define vpp             vector <pair <lli, pii>>
-#define mii             map <lli, lli>
-#define mpi             map <pii, lli>
+#define vpp             vector <pair <int, pii>>
+#define mii             map <int, int>
+#define mpi             map <pii, int>
 #define spi             set <pii>
 #define endl            "\n"
-#define vsz(x)          ((lli) x.size())
+#define vsz(x)          ((int) x.size())
 #define all(p)          p.begin(), p.end()
 #define rall(p)         p.rbegin(), p.rend()
 #define sorta(v)        sort(all(v))
 #define sortd(v)        sort(rall(v))
 #define double          long double
+#define MAX_CAP         1e9
+#define MAX_RNG         1024
+#define print(x)        cout << x << endl
+#define fori(v,n)       for(int i=v; i<n; i++)
+#define ford(n,v)       for(int i=n; i>v; i--)
+#define fora(i, a, n)   for (int i = a; i < n; ++i)
+#define forad(i, a, n)  for (int i = a; i > n; --i)
 #define TLE cerr<<"Time Elapsed "<<(double)clock()/CLOCKS_PER_SEC <<" s"<<endl;
-
-lli const MAX_CAP = 1e9;
-lli const MOD = 1e9 + 7;
-lli const MAX_RNG = 1024;
-
 template <class T> void vin(vector<T>& v) 
 { 
-    for(lli i=0; i<vsz(v); i++) 
+    fori(i, vsz(v)) 
     {
         cin >> v[i];
     } 
 }
 template <class T> void vout(const vector<T>& v) 
 { 
-    for(lli i=0; i<vsz(v); i++) 
+    fori(i, sz(v))
     {
         cout << v[i] << " \n"[i + 1 == vsz(v)];
     } 
@@ -56,7 +58,7 @@ template< class T > T lcm(T a, T b)
 }
 
 
-lli globalArr[MAX_RNG];
+int globalArr[MAX_RNG];
 
 void file()
 {
@@ -70,56 +72,35 @@ void config()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr); cout.tie(nullptr);
-    cout << setprecision(15) << fixed;
+    cout << setprecision(11);
     // file();
 
 }
-bool binary_search(lli arr[], lli n, lli key)
-{
-    lli left = 0;
-    lli right = n-1;
-    lli mid;
 
-    while(left <= right)
-    {
-        lli mid = (left+right)/2;
-
-        if(arr[mid] == key)
-        {
-            return true;
+#define M_PI 3.14159265358979323846
+const int N = 201;
+ 
+double Embedd[N];
+ 
+void calc() {
+    Embedd[2] = (double)1.0;
+    for (int i = 4; i <= 200; i += 2) {
+        double a = (double)360.0 / (i * 2) * M_PI / 180, b = 0, c = 0;
+        for (int j = 1; j <= (i * 2 - 4) / 4; j++) {
+            b += a;
+            c += cos(b);
         }
-        else if(arr[mid] > key)
-        {
-            right = mid - 1;
-        }
-        else
-        {
-            left = mid + 1;
-        }
+        Embedd[i] = 1.0 + 2.0 * c;
     }
-    return false;
 }
-
-bool isPrime(lli n)
-{
-    if (n <= 1)
-        return false;
- 
-    for (lli i = 2; i < n; i++)
-        if (n % i == 0)
-            return false;
- 
-    return true;
-}
-
 void Accepted();
 
 
 int32_t main()
 {
     config();
-    lli test_kase = 1;
-    scanf("%lld", &test_kase);
+    int test_kase = 1;
+    cin >> test_kase;
     while(test_kase--) Accepted();
     // TLE;
     return 0;
@@ -127,15 +108,16 @@ int32_t main()
 
 void Accepted()
 {
-    lli n = 0, m = 0, p = 0, q = 0;
-    scanf("%lld", &n); 
-    vi arr(n);
-    for(lli i=0; i<n; i++) {
-        scanf("%lld", &arr[i]);
-    }
-    
-    for(lli i=0; i<n; i++) {
-        printf("%lld ", arr[i]);
-    }
-    
+    int  n = 0;
+    calc();
+    cin >> n;
+
+    cout << Embedd[n] << endl;
+
+
+
 }
+// 1
+// 2.4142135624
+// 127.32133647
+

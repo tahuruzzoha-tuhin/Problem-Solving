@@ -19,6 +19,7 @@ using namespace std;
 #define mii             map <lli, lli>
 #define mpi             map <pii, lli>
 #define spi             set <pii>
+#define ll              %lld
 #define endl            "\n"
 #define vsz(x)          ((lli) x.size())
 #define all(p)          p.begin(), p.end()
@@ -119,7 +120,7 @@ int32_t main()
 {
     config();
     lli test_kase = 1;
-    scanf("%lld", &test_kase);
+    // scanf("%lld", &test_kase);
     while(test_kase--) Accepted();
     // TLE;
     return 0;
@@ -127,15 +128,51 @@ int32_t main()
 
 void Accepted()
 {
-    lli n = 0, m = 0, p = 0, q = 0;
-    scanf("%lld", &n); 
-    vi arr(n);
-    for(lli i=0; i<n; i++) {
-        scanf("%lld", &arr[i]);
-    }
+    lli n = 0, a = 0, b = 0, q = 6;
     
-    for(lli i=0; i<n; i++) {
-        printf("%lld ", arr[i]);
+    scanf("%lld %lld %lld", &n, &a, &b); 
+    
+    lli Dormitory = a*b;
+   
+    if(n*q <= Dormitory ) {
+       
+        printf("%lld\n%lld %lld\n", Dormitory, a, b);
+    
+    } else {
+        
+        bool flag = 0;
+        
+        if(a>b){
+            swap(a,b);
+            flag = 1;
+        }
+        
+        lli Area = 1e18, side1, side2, room;
+        
+        for(lli i=a; i*i <= q*n; i++){
+
+            room = 6*n / i;
+
+            if(room*i < 6*n) {
+                room++;
+            }
+
+            if(room < b) {
+                continue;
+            }
+
+            if(room*i < Area) {
+                Area = room*i;
+                side1 = i;
+                side2 = room;
+            }
+        }
+
+        if(flag) {
+            swap(side1, side2);
+        }
+
+        printf("%lld \n%lld %lld\n", Area, side1, side2);
     }
     
 }

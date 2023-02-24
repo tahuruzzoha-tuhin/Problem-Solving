@@ -77,39 +77,14 @@ void config()
 
 }
 
-const int N = 1e5 + 5;
-int n, garbage, a[N], b[N], c[N], d[N];
-int lft[N], rgt[N],top[N], bot[N];
-
 void Accepted();
-
-void update(int bit[], int idx)
-{
-    while(idx < N)
-    {
-        ++bit[idx];
-        idx += idx & - idx;
-    }
-}
-
-int query(int bit[], int idx)
-{
-    int res = 0;
-    while(idx)
-    {
-        res += bit[idx];
-        idx -= idx & - idx;
-    }
-    return res;
-}
-
 
 
 int32_t main()
 {
     config();
     int test_kase = 1;
-    // cin >> test_kase;
+    cin >> test_kase;
     while(test_kase--) Accepted();
     // TLE;
     return 0;
@@ -118,36 +93,72 @@ int32_t main()
 void Accepted()
 {
     int n = 0, m = 0, p = 0, q = 0;
-    cin >> n; cin >> garbage >> garbage;
+    int cumsum = 0LL, index = -1;
 
-    fori(1, n+1)
+    cin >> n; vi arr;
+    fori(0,n+2)
     {
-        cin >> a[i] >> b[i] >> c[i] >> d[i];
-        update(lft, min(a[i], c[i]));
-        update(rgt, max(a[i], c[i]));
-        update(top, min(b[i], d[i]));
-        update(bot, max(b[i], d[i]));
+        cin >> m;
+        arr.PB(m);
     }
 
+    sort(arr.begin(), arr.end());
 
-    cin >> lft[0] >> rgt[0] >> top[0] >> bot[0];
-    for(int i = 1 ; i <= n ; ++i)
+
+    fori(0,n)
     {
-        int p = query(lft , max(a[i] , c[i]) - 1);
-        int q = n - query(rgt , min(a[i] , c[i]));
-        int r = query(top , max(b[i] , d[i]) - 1);
-        int s = n - query(bot , min(b[i] , d[i]));
+        cumsum += arr[i];
+    }
 
-		if((p - (a[i] != c[i]) == lft[0]) && (q - (a[i] != c[i]) == rgt[0]) )
+    if( cumsum == arr[n] || cumsum == arr[n+1])
+    {
+        fori(0,n)
         {
-			if((r - (b[i] != d[i]) == top[0]) && s - (b[i] != d[i]) == bot[0])
+            if( i< n-1)
             {
-                cout << i <<endl;
-                return;
+                cout << arr[i] << " ";
+            } 
+            else 
+            {
+                cout << arr[i] << endl;    
             }
-		}
-	}
-	cout << -1 << endl;
+        }
+        return;
+    }
 
+    cumsum += arr[n];
+    fori(0, n+1)
+    {
+        if( cumsum - arr[i] == arr.back())
+        {
+            index = i;
+            break;
+        }
+    }
 
+    if(index == -1)
+    {
+        cout << -1 << endl;
+        return;
+    }
+    else
+    {
+        int j= 0;
+        fori(0,n+1)
+        {
+            if( i == index)
+            {
+                continue;
+            }
+            if( j < n-1)
+            {
+                cout << arr[i] << ' ';
+            }
+            else
+            {
+                cout << arr[i] << endl;
+            }
+            j++;
+        }
+    }
 }

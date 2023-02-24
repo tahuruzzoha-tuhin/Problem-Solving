@@ -77,32 +77,49 @@ void config()
 
 }
 
-const int N = 1e5 + 5;
-int n, garbage, a[N], b[N], c[N], d[N];
-int lft[N], rgt[N],top[N], bot[N];
+
+int countDigits(int l)
+{
+	if (l >= 1000000000000000000L)
+		return 19;
+	if (l >= 100000000000000000L)
+		return 18;
+	if (l >= 10000000000000000L)
+		return 17;
+	if (l >= 1000000000000000L)
+		return 16;
+	if (l >= 100000000000000L)
+		return 15;
+	if (l >= 10000000000000L)
+		return 14;
+	if (l >= 1000000000000L)
+		return 13;
+	if (l >= 100000000000L)
+		return 12;
+	if (l >= 10000000000L)
+		return 11;
+	if (l >= 1000000000L)
+		return 10;
+	if (l >= 100000000L)
+		return 9;
+	if (l >= 10000000L)
+		return 8;
+	if (l >= 1000000L)
+		return 7;
+	if (l >= 100000L)
+		return 6;
+	if (l >= 10000L)
+		return 5;
+	if (l >= 1000L)
+		return 4;
+	if (l >= 100L)
+		return 3;
+	if (l >= 10L)
+		return 2;
+	return 1;
+}
 
 void Accepted();
-
-void update(int bit[], int idx)
-{
-    while(idx < N)
-    {
-        ++bit[idx];
-        idx += idx & - idx;
-    }
-}
-
-int query(int bit[], int idx)
-{
-    int res = 0;
-    while(idx)
-    {
-        res += bit[idx];
-        idx -= idx & - idx;
-    }
-    return res;
-}
-
 
 
 int32_t main()
@@ -117,37 +134,60 @@ int32_t main()
 
 void Accepted()
 {
-    int n = 0, m = 0, p = 0, q = 0;
-    cin >> n; cin >> garbage >> garbage;
+    int n = 0, s = 0, m = 0, p = INT_MIN, q = INT_MAX;
 
-    fori(1, n+1)
+    cin >> m >> s; 
+    vi min_nums, max_nums; int x = s;
+    string smallest, largest;
+
+    if( (s+9-1)/9 > m or (m>1 and s == 0))
     {
-        cin >> a[i] >> b[i] >> c[i] >> d[i];
-        update(lft, min(a[i], c[i]));
-        update(rgt, max(a[i], c[i]));
-        update(top, min(b[i], d[i]));
-        update(bot, max(b[i], d[i]));
+        cout << -1 << " " << -1 << endl;
+        return;
+    }
+    if( s == 1)
+    {
+        string res = "1";
+        fori(0, m-1)
+        {
+            res += "0";
+        }
+        cout << res << " " << res << endl;
+        return;
+    }
+    while( x > 9 )
+    {
+        min_nums.PB(9);
+        max_nums.PB(9);
+        x -= 9;
+    }
+    max_nums.PB(x);
+    while(max_nums.size() < m)
+    {
+        max_nums.PB(0);
     }
 
-
-    cin >> lft[0] >> rgt[0] >> top[0] >> bot[0];
-    for(int i = 1 ; i <= n ; ++i)
+    if(min_nums.size() < m-1 and x > 1)
     {
-        int p = query(lft , max(a[i] , c[i]) - 1);
-        int q = n - query(rgt , min(a[i] , c[i]));
-        int r = query(top , max(b[i] , d[i]) - 1);
-        int s = n - query(bot , min(b[i] , d[i]));
+        min_nums.PB(x-1);
+        x = 1;
+    }
+    while( min_nums.size() < m-1)
+    {
+        min_nums.PB(0);
+    }
 
-		if((p - (a[i] != c[i]) == lft[0]) && (q - (a[i] != c[i]) == rgt[0]) )
-        {
-			if((r - (b[i] != d[i]) == top[0]) && s - (b[i] != d[i]) == bot[0])
-            {
-                cout << i <<endl;
-                return;
-            }
-		}
-	}
-	cout << -1 << endl;
+    min_nums.PB(x);
 
+    ford(m-1, -1)
+    {
+        smallest += to_string(min_nums[i]);
+    }
+    fori(0, m)
+    {
+        largest += to_string(max_nums[i]);
+    }
+
+    cout << smallest << " " << largest << endl;    
 
 }

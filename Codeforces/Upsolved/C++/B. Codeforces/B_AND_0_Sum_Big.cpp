@@ -33,6 +33,7 @@ using namespace std;
 #define ford(n,v)       for(int i=n; i>v; i--)
 #define fora(i, a, n)   for (int i = a; i < n; ++i)
 #define forad(i, a, n)  for (int i = a; i > n; --i)
+#define loop(i, start, end)    for(auto i = start; (start<end)?i<end:i>end; (start<end)?i++:i--)
 #define TLE cerr<<"Time Elapsed "<<(double)clock()/CLOCKS_PER_SEC <<" s"<<endl;
 template <class T> void vin(vector<T>& v) 
 { 
@@ -77,77 +78,75 @@ void config()
 
 }
 
-const int N = 1e5 + 5;
-int n, garbage, a[N], b[N], c[N], d[N];
-int lft[N], rgt[N],top[N], bot[N];
-
 void Accepted();
-
-void update(int bit[], int idx)
-{
-    while(idx < N)
-    {
-        ++bit[idx];
-        idx += idx & - idx;
-    }
-}
-
-int query(int bit[], int idx)
-{
-    int res = 0;
-    while(idx)
-    {
-        res += bit[idx];
-        idx -= idx & - idx;
-    }
-    return res;
-}
-
 
 
 int32_t main()
 {
     config();
     int test_kase = 1;
-    // cin >> test_kase;
+    cin >> test_kase;
     while(test_kase--) Accepted();
     // TLE;
     return 0;
 }
 
+
+const int MOD = 1e9 + 7;
 void Accepted()
 {
-    int n = 0, m = 0, p = 0, q = 0;
-    cin >> n; cin >> garbage >> garbage;
+    int n = 0, k = 0, m = 0, p = 0, q = 0, ans = 1;
+    cin >> n >> k ;
 
-    fori(1, n+1)
+    m = pow(2, k) - 1;
+    vi arr, brr, crr;
+    for(int i=1; i<=m/2; i++)
     {
-        cin >> a[i] >> b[i] >> c[i] >> d[i];
-        update(lft, min(a[i], c[i]));
-        update(rgt, max(a[i], c[i]));
-        update(top, min(b[i], d[i]));
-        update(bot, max(b[i], d[i]));
+        for(int j=0; j<=m/2; j++)
+        {
+            if(arr.size() == n*2 && brr.size() == n*2)
+            {
+                break;
+            }
+            if(i^j == 0)
+            {
+                arr.PB(i);
+                brr.PB(j);
+                ans = 1;
+            }
+        }
+    }
+    
+    for(int i=0; i< arr.size(); i++)
+    {
+        crr.PB(arr[i] + brr[i]);
     }
 
-
-    cin >> lft[0] >> rgt[0] >> top[0] >> bot[0];
-    for(int i = 1 ; i <= n ; ++i)
+    for(int i=n; i>max(0LL, n-k); --i)
     {
-        int p = query(lft , max(a[i] , c[i]) - 1);
-        int q = n - query(rgt , min(a[i] , c[i]));
-        int r = query(top , max(b[i] , d[i]) - 1);
-        int s = n - query(bot , min(b[i] , d[i]));
+        ans = ans*n;
+        ans = ans % MOD;
+    }
 
-		if((p - (a[i] != c[i]) == lft[0]) && (q - (a[i] != c[i]) == rgt[0]) )
+    if(n<k)
+    {
+        for(int i=0; i<k-n; i++)
         {
-			if((r - (b[i] != d[i]) == top[0]) && s - (b[i] != d[i]) == bot[0])
-            {
-                cout << i <<endl;
-                return;
-            }
-		}
-	}
-	cout << -1 << endl;
+            ans = ans * n;
+            ans = ans % MOD;
+        }
+    }
+
+    for(int i=1; i<arr.size(); i++)
+    {
+        ans += crr[i] % MOD;
+    }
+    for(int i=1; i<brr.size(); i++)
+    {
+        ans -= crr[i] % MOD;
+    }
+    
+    print(ans);
 
 
 }

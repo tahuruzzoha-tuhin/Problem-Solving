@@ -119,7 +119,7 @@ int32_t main()
 {
     config();
     lli test_kase = 1;
-    scanf("%lld", &test_kase);
+    // scanf("%lld", &test_kase);
     while(test_kase--) Accepted();
     // TLE;
     return 0;
@@ -129,13 +129,38 @@ void Accepted()
 {
     lli n = 0, m = 0, p = 0, q = 0;
     scanf("%lld", &n); 
-    vi arr(n);
+    lli arr[n] = {0};
     for(lli i=0; i<n; i++) {
         scanf("%lld", &arr[i]);
+        m += arr[i];
     }
     
-    for(lli i=0; i<n; i++) {
-        printf("%lld ", arr[i]);
+    lli sump = 0, sumq = 0, cnt = 0;
+    lli Ways[n] = {0};
+    if(m%3 != 0){
+        printf("0");
+    } else {
+
+        m = m/3;
+        for(int i = n-1; i >= 0 ; --i){
+            sump += arr[i];
+            if(sump == m){
+                Ways[i] = 1;
+            }
+        }
+        for(int i = n-2 ; i >= 0 ; --i){
+            Ways[i] += Ways[i+1];
+        }
+        
+        sumq = sump = 0;
+        for(int j=0; j+2 < n; j++){
+            sump += arr[j];
+            if(m == sump){
+                sumq += Ways[j+2];
+            }
+        }
+        printf("%lld \n", sumq);
     }
+
     
 }

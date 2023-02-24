@@ -77,77 +77,113 @@ void config()
 
 }
 
-const int N = 1e5 + 5;
-int n, garbage, a[N], b[N], c[N], d[N];
-int lft[N], rgt[N],top[N], bot[N];
+bool isPrime(int n)
+{
+    if (n <= 1)
+        return false;
+ 
+    for (int i = 2; i < n; i++)
+        if (n % i == 0)
+            return false;
+ 
+    return true;
+}
 
 void Accepted();
-
-void update(int bit[], int idx)
-{
-    while(idx < N)
-    {
-        ++bit[idx];
-        idx += idx & - idx;
-    }
-}
-
-int query(int bit[], int idx)
-{
-    int res = 0;
-    while(idx)
-    {
-        res += bit[idx];
-        idx -= idx & - idx;
-    }
-    return res;
-}
-
 
 
 int32_t main()
 {
     config();
     int test_kase = 1;
-    // cin >> test_kase;
+    cin >> test_kase;
     while(test_kase--) Accepted();
     // TLE;
     return 0;
 }
 
+bool binary_search(vi arr, int n, int key)
+{
+    int left = 0;
+    int right = n-1;
+    int mid;
+
+    while(left <= right)
+    {
+        int mid = (left+right)/2;
+
+        if(arr[mid] == key)
+        {
+            return true;
+        }
+        else if(arr[mid] > key)
+        {
+            right = mid - 1;
+        }
+        else
+        {
+            left = mid + 1;
+        }
+    }
+    return false;
+}
+
+int const mod = 1e9+7;
 void Accepted()
 {
-    int n = 0, m = 0, p = 0, q = 0;
-    cin >> n; cin >> garbage >> garbage;
+    int n = 0;
+    cin >> n; int arr[500010];
+    for(int i=1; i<=n; i++) {
+        cin >> arr[i];
+    }
+    
+    vi bag1, bag2, bag3;
+    sort(arr+1, arr+1+n);
+    for(int i=1; i<=n; i+=3){
+        // bool status = binary_search(bag1, bag1.size(), arr[i]);
+        // if(!status){
+        bag1.PB(arr[i]);
+        // }
+    }
+    for(int i=2; i<=n; i+=3){
+        // bool status = binary_search(bag2, bag2.size(), arr[i]);
+        // if(!status){
+        bag2.PB(arr[i]);
+        // }
+    }
+    for(int i=3; i<=n; i+=3){
+        // bool status = binary_search(bag3, bag3.size(), arr[i]);
+        // if(!status){
+        bag3.PB(arr[i]);
+        // }
+    }
+    sort(bag1.begin(), bag1.end());
+    sort(bag2.begin(), bag2.end());
+    sort(bag3.begin(), bag3.end());
 
-    fori(1, n+1)
-    {
-        cin >> a[i] >> b[i] >> c[i] >> d[i];
-        update(lft, min(a[i], c[i]));
-        update(rgt, max(a[i], c[i]));
-        update(top, min(b[i], d[i]));
-        update(bot, max(b[i], d[i]));
+    int ans = 0;
+    for(int i=n; i>=3; i--){
+        ans = max(ans, arr[i]*2-arr[i-1]-arr[1]);
+    }
+    for(int i=1; i<=n-2; i++){
+        ans = max(ans, arr[n]+arr[i+1]-arr[i]*2);
     }
 
+    int max_bricks1 = INT_MAX, max_bricks2 = INT_MAX, max_bricks3 = INT_MAX;
 
-    cin >> lft[0] >> rgt[0] >> top[0] >> bot[0];
-    for(int i = 1 ; i <= n ; ++i)
-    {
-        int p = query(lft , max(a[i] , c[i]) - 1);
-        int q = n - query(rgt , min(a[i] , c[i]));
-        int r = query(top , max(b[i] , d[i]) - 1);
-        int s = n - query(bot , min(b[i] , d[i]));
-
-		if((p - (a[i] != c[i]) == lft[0]) && (q - (a[i] != c[i]) == rgt[0]) )
-        {
-			if((r - (b[i] != d[i]) == top[0]) && s - (b[i] != d[i]) == bot[0])
-            {
-                cout << i <<endl;
-                return;
-            }
-		}
-	}
-	cout << -1 << endl;
-
-
+    for(auto x:bag1){
+        max_bricks1 = min(max_bricks1, x);
+    }
+    for(auto x:bag2){
+        max_bricks2 = min(max_bricks2, x);
+    }
+    for(auto x:bag3){
+        max_bricks3 = min(max_bricks3, x);
+    }
+    int p = ((abs(max_bricks1-max_bricks2) + abs(max_bricks2-max_bricks3) ) % mod);
+    ans = !p ? ans : ans ;
+    cout << ans << endl;
+    bag1.clear();
+    bag2.clear();
+    bag3.clear();
 }
