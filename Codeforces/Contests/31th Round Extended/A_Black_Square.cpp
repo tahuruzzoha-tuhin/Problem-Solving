@@ -47,7 +47,6 @@ void config()
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr); cout.tie(nullptr);
     cout << setprecision(15) << fixed;
-    // file();
 
 }
 bool binary_search(lli arr[], lli n, lli key)
@@ -84,9 +83,7 @@ int32_t main()
 {
     config();
     lli test_kase = 1;
-    scanf("%lld", &test_kase);
     while(test_kase--) Accepted();
-    // TLE;
     return 0;
 }
 
@@ -99,17 +96,20 @@ void Accepted()
     lli i=0, j=0, k=0, l=0, sum=0, len=0;
     string St, Sp="";
 
-    scanf("%lld", &n); 
-    scanf("%lld %lld", &n, &m);
+    scanf("%lld %lld %lld %lld", &n, &m, &p, &q);
     St = read_string();
-
-    vi arr(n);
-    for(lli i=0; i<n; i++) {
-        scanf("%lld", &arr[i]);
+    for(auto x:St){
+        if( x == '1') {
+            a++;
+        } else if(x == '2') {
+            b++;
+        } else if(x == '3') {
+            c++;
+        } else if(x == '4') {
+            d++;
+        }
     }
-    
-    for(lli i=0; i<n; i++) {
-        printf("%lld ", arr[i]);
-    }
+    ans = a*n + b*m + c*p + d*q;
+    printf("%lld", ans); 
     
 }

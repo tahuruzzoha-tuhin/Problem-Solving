@@ -7,21 +7,21 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define lli             long long int
+#define LL              long long
 #define F               first
 #define S               second
 #define PB              push_back
-#define si              set <lli>
-#define vi              vector <lli>
-#define pii             pair <lli, lli>
+#define si              set <LL>
+#define vi              vector <LL>
+#define pii             pair <LL, LL>
 #define vpii            vector <pii>
-#define vpp             vector <pair <lli, pii>>
-#define mii             map <lli, lli>
-#define mpi             map <pii, lli>
+#define vpp             vector <pair <LL, pii>>
+#define mii             map <LL, LL>
+#define mpi             map <pii, LL>
 #define spi             set <pii>
-#define list            list <lli>
+#define list            list <LL>
 #define endl            "\n"
-#define vsz(x)          ((lli) x.size())
+#define vsz(x)          ((LL) x.size())
 #define all(p)          p.begin(), p.end()
 #define rall(p)         p.rbegin(), p.rend()
 #define sorta(v)        sort(all(v))
@@ -29,10 +29,11 @@ using namespace std;
 #define double          long double
 #define TLE cerr<<"Time Elapsed "<<(double)clock()/CLOCKS_PER_SEC <<" s"<<endl;
 
-lli const MAX_CAP = 1e9;
-lli const MOD = 1e9 + 7;
-lli const MAX_RNG = 1024;
-lli globalArr[MAX_RNG];
+LL const MAX_CAP = 1e9;
+LL const MOD = 1e9 + 7;
+LL const MAX_RNG = 100000;
+LL Nth; double answer = 0.0;
+vi globalArr[MAX_RNG];
 
 void file()
 {
@@ -50,12 +51,12 @@ void config()
     // file();
 
 }
-bool binary_search(lli arr[], lli n, lli key)
+bool binary_search(LL arr[], LL n, LL key)
 {
-    lli left = 0, right = n-1, mid;
+    LL left = 0, right = n-1, mid;
     while(left <= right)
     {
-        lli mid = (left+right)/2;
+        LL mid = (left+right)/2;
         if(arr[mid] == key) return true;
         else if(arr[mid] > key) right = mid - 1;
         else left = mid + 1;
@@ -63,9 +64,9 @@ bool binary_search(lli arr[], lli n, lli key)
     return false;
 }
 
-bool isPrime(lli n)
+bool isPrime(LL n)
 {
-    if (n <= 1) return false;for (lli i = 2; i < n; i++) 
+    if (n <= 1) return false;for (LL i = 2; i < n; i++) 
     if (n % i == 0) return false; return true;
 }
 
@@ -77,39 +78,56 @@ string read_string() {
     return s;
 }
 
+void Journey(LL at, LL parent, double probability, LL depth) {
+
+    LL below = 0;
+    for(LL i:globalArr[at]) {
+        if(i!=parent){
+            below++;
+        }
+    }
+
+    for(LL i:globalArr[at]) {
+        if(i!=parent) {
+            Journey(i, at, probability/below, depth+1);
+        }
+    }
+    if(below == 0) {
+        answer += probability*depth;
+    }
+}
+
+
+
 void Accepted();
 
 
 int32_t main()
 {
     config();
-    lli test_kase = 1;
-    scanf("%lld", &test_kase);
+    LL test_kase = 1;
     while(test_kase--) Accepted();
-    // TLE;
     return 0;
 }
 
 void Accepted()
 {
-    lli n=0, m=0, p=0, q=0, r=0;
-    lli a=0, b=0, c=0, d=0, e=0, f=0;
-    lli ans=0, cnt=0, zero=0, one=0;
-    lli first=0, second=0, last=0, middl=0;
-    lli i=0, j=0, k=0, l=0, sum=0, len=0;
+    LL n=0, m=0, p=0, q=0, r=0;
+    LL a=0, b=0, c=0, d=0, e=0, f=0;
+    LL ans=0, cnt=0, zero=0, one=0;
+    LL first=0, second=0, last=0, middl=0;
+    LL i=0, j=0, k=0, l=0, sum=0, len=0;
     string St, Sp="";
 
-    scanf("%lld", &n); 
-    scanf("%lld %lld", &n, &m);
-    St = read_string();
+    scanf("%lld", &Nth); 
+    for(LL i=0; i<Nth-1; i++) {
+        scanf("%lld %lld", &p, &q);
+        p--; q--;
+        globalArr[p].PB(q);
+        globalArr[q].PB(p);
+    }
 
-    vi arr(n);
-    for(lli i=0; i<n; i++) {
-        scanf("%lld", &arr[i]);
-    }
-    
-    for(lli i=0; i<n; i++) {
-        printf("%lld ", arr[i]);
-    }
+    Journey(0, 0 , 1.0, 0);
+    printf("%0.15Lf\n", answer);
     
 }

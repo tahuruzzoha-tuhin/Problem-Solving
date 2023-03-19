@@ -84,7 +84,6 @@ int32_t main()
 {
     config();
     lli test_kase = 1;
-    scanf("%lld", &test_kase);
     while(test_kase--) Accepted();
     // TLE;
     return 0;
@@ -94,22 +93,22 @@ void Accepted()
 {
     lli n=0, m=0, p=0, q=0, r=0;
     lli a=0, b=0, c=0, d=0, e=0, f=0;
-    lli ans=0, cnt=0, zero=0, one=0;
+    lli ans=0, cnt=0, two=0, one=0, three=0, four=0;
     lli first=0, second=0, last=0, middl=0;
     lli i=0, j=0, k=0, l=0, sum=0, len=0;
     string St, Sp="";
 
-    scanf("%lld", &n); 
-    scanf("%lld %lld", &n, &m);
+    scanf("%lld %lld %lld %lld", &n, &m, &p, &q);
     St = read_string();
+    len = St.size();
+    lli arr[5] = {0};
+    for(int i=0; i<len; i++){
+        a = St[i]-'0';
+        arr[a]++;
+    }
+    ans = n*arr[1] + m*arr[2] + p*arr[3] + q*arr[4];
 
-    vi arr(n);
-    for(lli i=0; i<n; i++) {
-        scanf("%lld", &arr[i]);
-    }
+    printf("%lld\n", ans);
     
-    for(lli i=0; i<n; i++) {
-        printf("%lld ", arr[i]);
-    }
     
 }

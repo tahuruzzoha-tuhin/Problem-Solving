@@ -100,16 +100,21 @@ void Accepted()
     string St, Sp="";
 
     scanf("%lld", &n); 
-    scanf("%lld %lld", &n, &m);
-    St = read_string();
 
-    vi arr(n);
-    for(lli i=0; i<n; i++) {
+    vi arr(n+1);
+    for(lli i=1; i<=n; i++) {
         scanf("%lld", &arr[i]);
     }
-    
-    for(lli i=0; i<n; i++) {
-        printf("%lld ", arr[i]);
+    ans = 0;
+    first=0, second=0; 
+    for(lli l=1, r=l;l<=n;l++ , r++){
+        first=max(first,arr[r]);
+        second^=arr[r];
+        ans=max(ans,second^first);
     }
+
+    cout<<ans<<endl;
     
 }
+
+

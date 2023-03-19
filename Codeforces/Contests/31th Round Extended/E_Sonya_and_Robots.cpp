@@ -79,12 +79,15 @@ string read_string() {
 
 void Accepted();
 
+const lli MAXN = 1e5 + 5;
+lli a[MAXN], L[MAXN], R[MAXN];
+
 
 int32_t main()
 {
     config();
     lli test_kase = 1;
-    scanf("%lld", &test_kase);
+    // scanf("%lld", &test_kase);
     while(test_kase--) Accepted();
     // TLE;
     return 0;
@@ -92,24 +95,34 @@ int32_t main()
 
 void Accepted()
 {
-    lli n=0, m=0, p=0, q=0, r=0;
-    lli a=0, b=0, c=0, d=0, e=0, f=0;
-    lli ans=0, cnt=0, zero=0, one=0;
-    lli first=0, second=0, last=0, middl=0;
-    lli i=0, j=0, k=0, l=0, sum=0, len=0;
-    string St, Sp="";
-
-    scanf("%lld", &n); 
-    scanf("%lld %lld", &n, &m);
-    St = read_string();
-
-    vi arr(n);
-    for(lli i=0; i<n; i++) {
-        scanf("%lld", &arr[i]);
+    lli n;
+    cin >> n;
+    for (lli i = 1; i <= n; i++) {
+        cin >> a[i];
     }
-    
-    for(lli i=0; i<n; i++) {
-        printf("%lld ", arr[i]);
+
+    lli l_num = a[1], r_num = a[n];
+    lli l_idx = 1, r_idx = n;
+    for (lli i = 1; i <= n; i++) {
+        if (a[i] == l_num) {
+            L[l_idx] = i;
+            l_idx++;
+        }
+        if (a[i] == r_num) {
+            R[r_idx] = i;
+            r_idx--;
+        }
     }
+
+    long long ans = 0;
+    for (lli i = 1; i < l_idx; i++) {
+        for (lli j = n; j >= r_idx; j--) {
+            if (L[i] < R[j]) {
+                ans += (j - r_idx);
+                break;
+            }
+        }
+    }
+    cout << ans << endl;
     
 }

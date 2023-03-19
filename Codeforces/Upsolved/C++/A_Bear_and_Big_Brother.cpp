@@ -7,44 +7,41 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define int             long long int
+#define lli             long long int
 #define F               first
 #define S               second
 #define PB              push_back
-#define si              set <int>
-#define vi              vector <int>
-#define pii             pair <int, int>
+#define si              set <lli>
+#define vi              vector <lli>
+#define pii             pair <lli, lli>
 #define vpii            vector <pii>
-#define vpp             vector <pair <int, pii>>
-#define mii             map <int, int>
-#define umii            unordered_map <int, int>
-#define mpi             map <pii, int>
+#define vpp             vector <pair <lli, pii>>
+#define mii             map <lli, lli>
+#define mpi             map <pii, lli>
 #define spi             set <pii>
 #define endl            "\n"
-#define vsz(x)          ((int) x.size())
+#define vsz(x)          ((lli) x.size())
 #define all(p)          p.begin(), p.end()
 #define rall(p)         p.rbegin(), p.rend()
 #define sorta(v)        sort(all(v))
 #define sortd(v)        sort(rall(v))
 #define double          long double
-#define MAX_CAP         1e9
-#define MAX_RNG         1024
-#define print(x)        cout << x << endl
-#define fori(v,n)       for(int i=v; i<n; i++)
-#define ford(n,v)       for(int i=n; i>v; i--)
-#define fora(i, a, n)   for (int i = a; i < n; ++i)
-#define forad(i, a, n)  for (int i = a; i > n; --i)
 #define TLE cerr<<"Time Elapsed "<<(double)clock()/CLOCKS_PER_SEC <<" s"<<endl;
+
+lli const MAX_CAP = 1e9;
+lli const MOD = 1e9 + 7;
+lli const MAX_RNG = 1024;
+
 template <class T> void vin(vector<T>& v) 
 { 
-    fori(i, vsz(v)) 
+    for(lli i=0; i<vsz(v); i++) 
     {
         cin >> v[i];
     } 
 }
 template <class T> void vout(const vector<T>& v) 
 { 
-    fori(i, sz(v))
+    for(lli i=0; i<vsz(v); i++) 
     {
         cout << v[i] << " \n"[i + 1 == vsz(v)];
     } 
@@ -59,7 +56,7 @@ template< class T > T lcm(T a, T b)
 }
 
 
-int globalArr[MAX_RNG];
+lli globalArr[MAX_RNG];
 
 void file()
 {
@@ -77,6 +74,43 @@ void config()
     // file();
 
 }
+bool binary_search(lli arr[], lli n, lli key)
+{
+    lli left = 0;
+    lli right = n-1;
+    lli mid;
+
+    while(left <= right)
+    {
+        lli mid = (left+right)/2;
+
+        if(arr[mid] == key)
+        {
+            return true;
+        }
+        else if(arr[mid] > key)
+        {
+            right = mid - 1;
+        }
+        else
+        {
+            left = mid + 1;
+        }
+    }
+    return false;
+}
+
+bool isPrime(lli n)
+{
+    if (n <= 1)
+        return false;
+ 
+    for (lli i = 2; i < n; i++)
+        if (n % i == 0)
+            return false;
+ 
+    return true;
+}
 
 void Accepted();
 
@@ -84,8 +118,8 @@ void Accepted();
 int32_t main()
 {
     config();
-    int test_kase = 1;
-    cin >> test_kase;
+    lli test_kase = 1;
+    // scanf("%lld", &test_kase);
     while(test_kase--) Accepted();
     // TLE;
     return 0;
@@ -93,32 +127,13 @@ int32_t main()
 
 void Accepted()
 {
-    int n = 0, m = 0, p = 0, q = 0;
-    cin >> n; int arr[n];
-    
-    umii cnt;
-    fori(0,n) cin >> arr[i];
-    fori(0,n)
-    {
-        // cout << arr[i] << " " << i << " " << arr[i]-i << endl;
-        cnt[arr[i] - i]++; 
-        // cout << cnt[arr[i]-i]  << endl;
-        // for(auto x:cnt)
-        // {
-            // cout << x.F << " " << x.S << endl;
-        // }
-        // print(" ");
-
+    lli n = 0, m = 0, p = 0, q = 0;
+    scanf("%lld %lld", &n, &m); 
+    while(n <= m) {
+        n = 3*n;
+        m = 2*m;
+        p++;
     }
-
-    for(auto v : cnt)
-    {
-        p += v.Str * (v.Str-1)/2;
-    }
-    print(p);
-    // for(auto v : cnt)
-    // {
-    //    cout << v.F << " " << v.S << endl;
-    // }
-
+    printf("%lld\n", p);
+       
 }

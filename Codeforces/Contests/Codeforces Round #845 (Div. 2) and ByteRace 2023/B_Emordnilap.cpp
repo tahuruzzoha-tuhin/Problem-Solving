@@ -5,7 +5,7 @@
 \****************************************************************/
 
 #include <bits/stdc++.h>
-using namespace std;
+using namespace std; 
 
 #define lli             long long int
 #define F               first
@@ -100,16 +100,27 @@ void Accepted()
     string St, Sp="";
 
     scanf("%lld", &n); 
-    scanf("%lld %lld", &n, &m);
-    St = read_string();
-
-    vi arr(n);
-    for(lli i=0; i<n; i++) {
-        scanf("%lld", &arr[i]);
+    if(n==1) {
+        cout << 0 << endl; 
+        return;
     }
+    else 
+    {
+        lli tr = n*(n-1);
+        for(lli j=1; j<=n; j++){
+            tr = (tr*j) % MOD;
+        }
+        cout << tr << endl;
+    }
+    // vi arr(n);
+    // for(lli i=0; i<n; i++) {
+    //     scanf("%lld", &arr[i]);
+    // }
     
-    for(lli i=0; i<n; i++) {
-        printf("%lld ", arr[i]);
-    }
+    // for(lli i=0; i<n; i++) {
+    //     printf("%lld ", arr[i]);
+    // }
     
 }
+
+

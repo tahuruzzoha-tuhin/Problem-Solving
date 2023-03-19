@@ -19,7 +19,6 @@ using namespace std;
 #define mii             map <lli, lli>
 #define mpi             map <pii, lli>
 #define spi             set <pii>
-#define list            list <lli>
 #define endl            "\n"
 #define vsz(x)          ((lli) x.size())
 #define all(p)          p.begin(), p.end()
@@ -32,6 +31,31 @@ using namespace std;
 lli const MAX_CAP = 1e9;
 lli const MOD = 1e9 + 7;
 lli const MAX_RNG = 1024;
+
+template <class T> void vin(vector<T>& v) 
+{ 
+    for(lli i=0; i<vsz(v); i++) 
+    {
+        cin >> v[i];
+    } 
+}
+template <class T> void vout(const vector<T>& v) 
+{ 
+    for(lli i=0; i<vsz(v); i++) 
+    {
+        cout << v[i] << " \n"[i + 1 == vsz(v)];
+    } 
+}
+template< class T > T gcd(T a, T b)
+{
+    return (b != 0 ? gcd<T>(b, a%b) : a);
+}
+template< class T > T lcm(T a, T b)
+{
+    return (a / gcd<T>(a, b) * b);
+}
+
+
 lli globalArr[MAX_RNG];
 
 void file()
@@ -50,31 +74,42 @@ void config()
     // file();
 
 }
-bool binary_search(lli arr[], lli n, lli key)
+bool binary_search(vi arr, lli n, lli key)
 {
-    lli left = 0, right = n-1, mid;
+    lli left = 0;
+    lli right = n-1;
+    lli mid;
+
     while(left <= right)
     {
         lli mid = (left+right)/2;
-        if(arr[mid] == key) return true;
-        else if(arr[mid] > key) right = mid - 1;
-        else left = mid + 1;
+
+        if(arr[mid] == key)
+        {
+            return true;
+        }
+        else if(arr[mid] > key)
+        {
+            right = mid - 1;
+        }
+        else
+        {
+            left = mid + 1;
+        }
     }
     return false;
 }
 
 bool isPrime(lli n)
 {
-    if (n <= 1) return false;for (lli i = 2; i < n; i++) 
-    if (n % i == 0) return false; return true;
-}
-
-string read_string() {
-    string s; unsigned int uc; int c;
-    while ((uc = (unsigned int)getchar()) <= 32u);
-    if (uc < 256u) s.push_back((char)uc);
-    while ((c = getchar()) > 32) s.push_back((char)c);
-    return s;
+    if (n <= 1)
+        return false;
+ 
+    for (lli i = 2; i < n; i++)
+        if (n % i == 0)
+            return false;
+ 
+    return true;
 }
 
 void Accepted();
@@ -92,24 +127,55 @@ int32_t main()
 
 void Accepted()
 {
-    lli n=0, m=0, p=0, q=0, r=0;
-    lli a=0, b=0, c=0, d=0, e=0, f=0;
-    lli ans=0, cnt=0, zero=0, one=0;
-    lli first=0, second=0, last=0, middl=0;
-    lli i=0, j=0, k=0, l=0, sum=0, len=0;
-    string St, Sp="";
-
+    lli n = 0, m = 0, p = 0, q = 0;
     scanf("%lld", &n); 
-    scanf("%lld %lld", &n, &m);
-    St = read_string();
-
     vi arr(n);
     for(lli i=0; i<n; i++) {
         scanf("%lld", &arr[i]);
     }
     
-    for(lli i=0; i<n; i++) {
-        printf("%lld ", arr[i]);
+    mii Pet;
+    for(auto x:arr){
+        Pet[x]++;
     }
+    // lli x = Pet.size();
+    // printf("%lld\n", x);
+
+    // if(Pet.size()%2 == 0){
+    //     lli cnt = 0;
+    //     lli flg = 0; 
+    //     for(auto x:Pet){
+    //         // bool status = binary_search(arr, n, x); 
+    //         for(int i=0; i<n; i++){
+    //             if(x == arr[i]){
+    //                 cnt++;
+    //             }
+    //         }
+    lli flg = 0;
+    for(auto x:Pet){
+        if(x.S % 2 == 0){
+            continue;
+        } else {
+            flg = 1;
+            break;
+        }
+    }
+    if(flg) {
+        printf("NO\n");
+    } else {
+        printf("YES\n");
+    }
+    //         if(cnt % 2 == 0){
+    //             flg = 1;
+    //         }
+    //     }
+    //     if(flg){
+    //         printf("YES\n");
+    //     } else {
+    //         printf("NO\n");
+    //     }
+    // } else {
+    //     printf("NO\n");
+    // }
     
 }

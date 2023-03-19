@@ -1,3 +1,4 @@
+
 /****************************************************************\
                    BISMILLAHIR RAHMANIR RAHIM
 ****************************************************************
@@ -47,18 +48,19 @@ void config()
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr); cout.tie(nullptr);
     cout << setprecision(15) << fixed;
-    // file();
 
 }
-bool binary_search(lli arr[], lli n, lli key)
+bool binary_search(vi arr, lli n, lli key, lli dist)
 {
-    lli left = 0, right = n-1, mid;
-    while(left <= right)
-    {
-        lli mid = (left+right)/2;
-        if(arr[mid] == key) return true;
-        else if(arr[mid] > key) right = mid - 1;
-        else left = mid + 1;
+    lli first = arr[0], count = 1;
+    for(lli i=1; i<n; i++) {
+        if((arr[i] - first) >= dist) {
+            count++;
+            first = arr[i];
+        }
+        if(count == key) {
+            return true;
+        }
     }
     return false;
 }
@@ -86,7 +88,6 @@ int32_t main()
     lli test_kase = 1;
     scanf("%lld", &test_kase);
     while(test_kase--) Accepted();
-    // TLE;
     return 0;
 }
 
@@ -99,17 +100,23 @@ void Accepted()
     lli i=0, j=0, k=0, l=0, sum=0, len=0;
     string St, Sp="";
 
-    scanf("%lld", &n); 
-    scanf("%lld %lld", &n, &m);
-    St = read_string();
+    scanf("%lld %lld", &n, &c);
 
-    vi arr(n);
-    for(lli i=0; i<n; i++) {
+    vi arr(n), brr;
+    for(i=0; i<n; i++) {
         scanf("%lld", &arr[i]);
     }
-    
-    for(lli i=0; i<n; i++) {
-        printf("%lld ", arr[i]);
+    sorta(arr);
+    a = arr[0], b = arr[n-1] - arr[0];
+    while(a <= b){
+        m = (a+b)/2;
+        if(binary_search(arr, n, c, m)) {
+            ans = max(m,ans);
+            a = m+1;
+        } else {
+            b = m-1;
+        }
     }
+    printf("%lld ", ans);
     
 }

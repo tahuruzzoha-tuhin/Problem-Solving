@@ -99,17 +99,13 @@ void Accepted()
     lli i=0, j=0, k=0, l=0, sum=0, len=0;
     string St, Sp="";
 
-    scanf("%lld", &n); 
     scanf("%lld %lld", &n, &m);
-    St = read_string();
 
     vi arr(n);
     for(lli i=0; i<n; i++) {
         scanf("%lld", &arr[i]);
     }
     
-    for(lli i=0; i<n; i++) {
-        printf("%lld ", arr[i]);
-    }
+    vi pos;
     
 }

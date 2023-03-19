@@ -19,7 +19,6 @@ using namespace std;
 #define mii             map <lli, lli>
 #define mpi             map <pii, lli>
 #define spi             set <pii>
-#define list            list <lli>
 #define endl            "\n"
 #define vsz(x)          ((lli) x.size())
 #define all(p)          p.begin(), p.end()
@@ -84,7 +83,7 @@ int32_t main()
 {
     config();
     lli test_kase = 1;
-    scanf("%lld", &test_kase);
+    // scanf("%lld", &test_kase);
     while(test_kase--) Accepted();
     // TLE;
     return 0;
@@ -96,20 +95,37 @@ void Accepted()
     lli a=0, b=0, c=0, d=0, e=0, f=0;
     lli ans=0, cnt=0, zero=0, one=0;
     lli first=0, second=0, last=0, middl=0;
-    lli i=0, j=0, k=0, l=0, sum=0, len=0;
+    lli i=0, j=0, k=0, l=0, sum=0;
     string St, Sp="";
 
     scanf("%lld", &n); 
-    scanf("%lld %lld", &n, &m);
-    St = read_string();
+  
+    list<lli> arr;
+    for(lli i=0; i<n; i++) {
+        scanf("%lld", &r);
+        arr.PB(r);
+    }
+    
+    for(lli i=0; i<n; i++) {
+        if(arr.front() > arr.back()) {
+            m = arr.front();
+            arr.pop_front();
+        } else {
+            m = arr.back();
+            arr.pop_back();
+        }
 
-    vi arr(n);
-    for(lli i=0; i<n; i++) {
-        scanf("%lld", &arr[i]);
+        if(i%2 == 0) {
+            one += m;
+        } else {
+            zero += m;
+        }
     }
-    
-    for(lli i=0; i<n; i++) {
-        printf("%lld ", arr[i]);
-    }
-    
+
+    printf("%lld %lld\n", one, zero);
+
 }
+
+
+
+

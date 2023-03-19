@@ -77,6 +77,39 @@ string read_string() {
     return s;
 }
 
+
+lli merge(vector<lli> &a, lli l, lli m, lli r) {
+    lli i = l, j = m, k = 0;
+    lli count = 0;
+    vector<lli> tmp(r - l + 1);
+    while (i < m && j <= r) {
+        if (a[i] <= a[j]) {
+            tmp[k++] = a[i++];
+        } else {
+            tmp[k++] = a[j++];
+            count += m - i;
+        }
+    }
+    while (i < m) {
+        tmp[k++] = a[i++];
+    }
+    while (j <= r) {
+        tmp[k++] = a[j++];
+    }
+    for (lli i = l, k = 0; i <= r; i++, k++) {
+        a[i] = tmp[k];
+    }
+    return count;
+}
+
+lli merge_sort(vector<lli> &a, lli l, lli r) {
+    if (l >= r) {
+        return 0;
+    }
+    lli m = (l + r) / 2;
+    lli count = merge_sort(a, l, m) + merge_sort(a, m + 1, r) + merge(a, l, m + 1, r);
+    return count;
+}
 void Accepted();
 
 
@@ -99,17 +132,13 @@ void Accepted()
     lli i=0, j=0, k=0, l=0, sum=0, len=0;
     string St, Sp="";
 
-    scanf("%lld", &n); 
-    scanf("%lld %lld", &n, &m);
-    St = read_string();
 
+    scanf("%lld", &n);
     vi arr(n);
-    for(lli i=0; i<n; i++) {
+    for (lli i = 0; i < n; i++) {
         scanf("%lld", &arr[i]);
     }
-    
-    for(lli i=0; i<n; i++) {
-        printf("%lld ", arr[i]);
-    }
+    lli count = merge_sort(arr, 0, n - 1);
+    printf("%lld\n", count);
     
 }

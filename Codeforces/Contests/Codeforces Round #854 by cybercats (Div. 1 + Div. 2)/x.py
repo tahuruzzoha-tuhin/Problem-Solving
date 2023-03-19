@@ -122,47 +122,22 @@
 #     box.reverse()
 #     return box
 
-# MOD = 1000000007
-
-# def power( a,  b):
-#     if (b == 0):
-#         return 1
-#     if (b % 2 == 1):
-#         return (power (a, b-1) * a) % MOD
-#     else:
-#         c = (power (a, b/2)) % MOD
-#         return (c * c) % MOD
-    
 
 # def ii(): return int(input())
 # def si(): return input()
 # def mi(): return map(int, input().strip().split(" "))
 # def li(): return list(mi())
 
-
+# MAXX = 100000000
 
 # '''**************Solution is Here***********'''
 
 # def main():
 #     T = 1
-#     T = ii()
+#     # T = ii()
 #     for _ in range(T):
-#         n = ii()
-#         # flag = 2*n
-#         # for i in range(n):
-#         #     flag+=1
-#         # DemoDogs = (((n*(n+1)*flag)//6) * 2022) % MOD
-#         # Count = (((n-1)*(n)%MOD*(n+1)%MOD*2022)%MOD*power(3,MOD-2))
-#         # Kill = (DemoDogs + Count) % MOD
-#         # TotalKill = Kill%MOD 
-#         TotalKill = n
-#         TotalKill *= (n+1)
-#         TotalKill *= (4*n-1)
-#         TotalKill //= 6
-#         TotalKill = (TotalKill*2022) % MOD
-#         print(TotalKill)
-#         # print(TotalKill)
-#         # print(DemoDogs)
+#         n, k = li()
+#         a = li()
 
     
 # # End FASTIO
@@ -170,6 +145,3 @@
 #     main()
 
 
-def I(): return int(input())
-for _ in range(I()):
-    n=I();print((((2*n*(n+1)*(2*n+1)//6) - (n*(n+1)//2))*2022)%1000000007)

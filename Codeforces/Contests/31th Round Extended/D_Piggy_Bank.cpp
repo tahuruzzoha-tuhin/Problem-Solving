@@ -29,9 +29,9 @@ using namespace std;
 #define double          long double
 #define TLE cerr<<"Time Elapsed "<<(double)clock()/CLOCKS_PER_SEC <<" s"<<endl;
 
-lli const MAX_CAP = 1e9;
+lli const MAX_CAP = 10000;
 lli const MOD = 1e9 + 7;
-lli const MAX_RNG = 1024;
+lli const MAX_RNG = 500;
 lli globalArr[MAX_RNG];
 
 void file()
@@ -92,24 +92,37 @@ int32_t main()
 
 void Accepted()
 {
-    lli n=0, m=0, p=0, q=0, r=0;
-    lli a=0, b=0, c=0, d=0, e=0, f=0;
-    lli ans=0, cnt=0, zero=0, one=0;
-    lli first=0, second=0, last=0, middl=0;
-    lli i=0, j=0, k=0, l=0, sum=0, len=0;
-    string St, Sp="";
+    lli pTaka[MAX_RNG], n, wGrams[MAX_RNG], sumTaka[MAX_CAP];
+    lli emptyWeight =0, filledWeight = 0, diffWeight = 0;
 
+    scanf("%lld %lld", &emptyWeight, &filledWeight);
     scanf("%lld", &n); 
-    scanf("%lld %lld", &n, &m);
-    St = read_string();
 
-    vi arr(n);
+
     for(lli i=0; i<n; i++) {
-        scanf("%lld", &arr[i]);
+        scanf("%lld %lld", &pTaka[i], &wGrams[i]);
     }
-    
-    for(lli i=0; i<n; i++) {
-        printf("%lld ", arr[i]);
+
+    diffWeight = filledWeight - emptyWeight;
+    sumTaka[0] = 0;
+
+    for(lli i = 1; i<= diffWeight; i++){
+        sumTaka[i] = -1;
+
+        for(lli j = 0; j<n; j++) {
+            
+            if(i >= wGrams[j] && sumTaka[i-wGrams[j]] != -1 && ((sumTaka[i] == -1 || (pTaka[j] + sumTaka[i-wGrams[j]] <= sumTaka[i])))) {
+            
+                    sumTaka[i] = pTaka[j] + sumTaka[i - wGrams[j]];
+            
+                }
+            
+        }
+
     }
-    
+    if(sumTaka[diffWeight] == -1) {
+        printf("This is impossible.\n");
+    } else {
+        printf("The minimum amount of money in the piggy-bank is %lld.\n",sumTaka[diffWeight]);
+    }
 }

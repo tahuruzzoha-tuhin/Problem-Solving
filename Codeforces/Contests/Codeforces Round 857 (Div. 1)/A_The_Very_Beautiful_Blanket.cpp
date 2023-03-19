@@ -77,8 +77,8 @@ string read_string() {
     return s;
 }
 
+lli arr[MAX_RNG][MAX_RNG];
 void Accepted();
-
 
 int32_t main()
 {
@@ -99,17 +99,19 @@ void Accepted()
     lli i=0, j=0, k=0, l=0, sum=0, len=0;
     string St, Sp="";
 
-    scanf("%lld", &n); 
     scanf("%lld %lld", &n, &m);
-    St = read_string();
-
-    vi arr(n);
-    for(lli i=0; i<n; i++) {
-        scanf("%lld", &arr[i]);
-    }
     
-    for(lli i=0; i<n; i++) {
-        printf("%lld ", arr[i]);
+    for(lli i=1; i<=n; i++) {
+        for (lli j=1; j<=m; j++) {
+            arr[i][j] = (i^(j<<20));
+        }
+    }
+    printf("%lld\n", n*m);
+    for(lli i=1; i<=n; i++) {
+        for (lli j=1; j<=m; j++) {
+            printf("%lld ", arr[i][j]);
+        }
+        printf("\n");
     }
     
 }
