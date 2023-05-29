@@ -34,7 +34,7 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    lli n, t, a, b;
+    ll n, t, a, b;
     cin >> t;
     f0(i,t)
     {

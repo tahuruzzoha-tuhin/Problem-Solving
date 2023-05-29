@@ -36,7 +36,7 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
-    lli n, j=1, div=0;
+    ll n, j=1, div=0;
     cin >> n;
     while(j<n)
     {

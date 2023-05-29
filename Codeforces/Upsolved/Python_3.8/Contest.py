@@ -138,32 +138,37 @@ MAXX = 100000000
 '''**************Solution is Here***********'''
 
 def main():
-    N, Q = li()
-    Takahashi = dict()
-    Twidai = set()
-    for _ in range(Q):
-        t, follow, unfollow = li()
-        if t == 1:
-            if follow in Twidai:
-                Takahashi[follow].add(unfollow)
-            else:
-                Takahashi[follow] = set()
-                Takahashi[follow].add(unfollow)
-                Twidai.add(follow)
-        elif t == 2:
-            if follow in Twidai:
-                if unfollow in Takahashi[follow]:
-                    Takahashi[follow].remove(unfollow)
-            else:
-                pass
-        elif t == 3:
-            if follow in Twidai and unfollow in Twidai:
-                if follow in Takahashi[unfollow] and unfollow in Takahashi[follow]:
-                    print('Yes')
-                else:
-                    print('No')
-            else:
-                print('No')
+    def is_palindrome(arr):
+        n = len(arr)
+        for i in range(n // 2):
+            if arr[i] != arr[n - i - 1]:
+                return False
+        return True
+
+    def find_biggest_palindrome_x(arr):
+        max_num = max(arr)
+        factors = set()
+        for num in arr:
+            for i in range(1, int(num**0.5) + 1):
+                if num % i == 0:
+                    factors.add(i)
+                    factors.add(num // i)
+
+        factors = sorted(list(factors), reverse=True)
+        for factor in factors:
+            mod_arr = [a % factor for a in arr]
+            if is_palindrome(mod_arr):
+                return factor
+
+        return 0
+
+
+    t = int(input())
+    for _ in range(t):
+        n = int(input())
+        arr = list(map(int, input().split()))
+        print(find_biggest_palindrome_x(arr))
+
 
             
 # End FASTIO

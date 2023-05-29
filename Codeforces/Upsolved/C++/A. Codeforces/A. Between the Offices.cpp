@@ -34,7 +34,7 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    lli n, i=0;
+    ll n, i=0;
     string S;
     string F ;
     char san[101];

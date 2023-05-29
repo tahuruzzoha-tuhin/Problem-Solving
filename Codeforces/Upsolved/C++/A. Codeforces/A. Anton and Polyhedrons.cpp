@@ -35,7 +35,7 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
-    lli n, t=0;
+    ll n, t=0;
     string s1 = "Tetrahedron";
     string s2 = "Cube";
     string s3 = "Octahedron";

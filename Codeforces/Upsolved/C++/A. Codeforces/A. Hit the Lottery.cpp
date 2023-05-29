@@ -35,7 +35,7 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    lli x1,x5,x10,x20,x100, x;
+    ll x1,x5,x10,x20,x100, x;
     cin >> x;
     x100 = x/mx1;
     x20 = (x-x100*mx1)/mx2;

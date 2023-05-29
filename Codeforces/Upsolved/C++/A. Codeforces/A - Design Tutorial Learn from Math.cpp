@@ -35,7 +35,7 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
-    lli n;
+    ll n;
     cin >> n;
     if(n%2!=0) cout << mx1 << " " << n-mx1 << endl;
     else cout << mx2 << " " << n-mx2 << endl;

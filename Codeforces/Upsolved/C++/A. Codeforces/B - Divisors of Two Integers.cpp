@@ -35,10 +35,10 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
-    lli n, p, q, k=0;
-    lli arr[mx4];
-    lli brr[mx4];
-    lli crr[mx4];
+    ll n, p, q, k=0;
+    ll arr[mx4];
+    ll brr[mx4];
+    ll crr[mx4];
     cin >> n;
 
     f0(i,n) cin >> arr[i];

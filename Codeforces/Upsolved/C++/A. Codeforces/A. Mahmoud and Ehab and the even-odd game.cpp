@@ -37,7 +37,7 @@ int main()
     cout.tie(NULL);
     string ms = "Mahmoud";
     string es ="Ehab";
-    lli n;
+    ll n;
     cin >> n;
     if(n%2==0)
     {
