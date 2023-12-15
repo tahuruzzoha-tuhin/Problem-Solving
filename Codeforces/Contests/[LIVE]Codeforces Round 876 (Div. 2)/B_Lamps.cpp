@@ -2,8 +2,68 @@
                    BISMILLAHIR RAHMANIR RAHIM
 \****************************************************************/
 
-#include <bits/stdc++.h>
-using namespace std;
+#include <iostream>
+#include <iomanip>
+#include <chrono>
+ 
+#include <cmath>
+#include <string>
+#include <algorithm>
+#include <iterator>
+  
+#include <set> 
+#include <map>
+#include <list>
+#include <stack>
+#include <tuple>
+#include <queue>
+#include <deque>
+#include <vector>
+
+#include <utility>
+#include <bitset>
+#include <limits.h>
+ 
+
+using std::get;
+using std::sort;
+using std::stoi;
+
+using std::find;
+using std::copy;
+using std::move;
+using std::swap;
+using std::fixed;
+using std::getline;
+
+using std::make_pair;
+using std::to_string;
+using std::upper_bound;
+using std::lower_bound;
+using std::setprecision;
+ 
+using std::cin;
+using std::cout;
+using std::cerr;
+
+using std::set;
+using std::map;
+using std::list;
+using std::tuple;
+using std::stack;
+using std::queue;
+using std::deque;
+using std::string;
+using std::vector;
+
+using std::pair;
+using std::less;
+using std::bitset;
+using std::greater;
+using std::unordered_map;
+using std::priority_queue;
+using std::istream_iterator;
+using std::ostream_iterator;
  
  
 typedef long double                         ld;
@@ -43,6 +103,7 @@ typedef map<int, int>                       mii;
 typedef map<pii, int>                       mpii;
 typedef map<ll, ll>                         mll;
 typedef map<pll, ll>                        mpll;
+typedef map<int, vll>                       mlvll;
 
 typedef unordered_map<int, int>             umii;
 typedef unordered_map<ll, ll>               umll;
@@ -71,6 +132,7 @@ typedef unordered_map<char, ll>             umcl;
 #define mp                                  make_pair
 #define ff                                  first
 #define ss                                  second
+#define emb                                 emplace_back
  
 #define yes                                 cout << "yes" << endl
 #define no                                  cout << "no" << endl
@@ -106,7 +168,7 @@ void file()
         freopen("output.txt", "w+", stdout);
     #endif
 
-    
+   
 }
 
 void config()
@@ -173,21 +235,58 @@ int32_t main()
     return 0;
 }
 
+// typedef struct {
+//     int first;
+//     int second;
+// } Pair;
+// ll comparePairs(const void *d, const void *b){
+//     Pair *pairA = (Pair *)d;
+//     Pair *pairB = (Pair *)b;
+
+//     if(pairA->ff < pairB->ff){
+//         return -1;
+//     } else if(pairA->ss < pairB->ss){
+//         return 1;
+//     } else {
+//         return 0;
+//     }
+
+// }
 void business_logic()
 {
-    ll n=0, m=0, x=0, y=0;
-    string st, sp="";
-    
-    // cin >> n >> m;
-    // St = read_string();
-    // vll vec {istream_iterator<ll>(cin), istream_iterator<ll>()};
-    // copy(vec.begin(), vec.end(), ostream_iterator<ll>(cout, " "));
-    
-    cin >> n;
-    vll vec1(n); f0(i,n) cin >> vec1[i];
-    vll vec2(n); f0(i,n) cout << vec1[i] << " ";
-
-
+    ll n, points=0; cin >> n;
+    vll lamp1(n+1), lamp2(n+1);
+    mlvll broken;
+    f1(i,n){
+        cin >> lamp1[i] >> lamp2[i];
+        broken[lamp1[i]].emb(lamp2[i]);
+    }
+    // umll freq;
+    // for (auto num : x) {
+    //     freq[num]++;
+    // }
+    // return freq;
+    f1(i,n) {
+        sort(broken[i].begin(), broken[i].end(),
+            [](const ll& a, const ll& b) {
+                return a > b;
+            });
+    }
+    // if(pairA->ff < pairB->ff){
+    //     return -1;
+    // } else if(pairA->ss < pairB->ss){
+    //     return 1;
+    // } else {
+    //     return 0;
+    // }
+    f1(i,n){
+        for(ll j=0; j<i and j<broken[i].size(); j++){
+            points += broken[i][j];
+            // if (n <= 1) return false;for (ll i = 2; i < n; i++) 
+            // if (n % i == 0) return false; return true;
+        }
+    }
+    cout << points << endl;
 
     
 }

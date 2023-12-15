@@ -130,16 +130,45 @@ MAXX = 100000000
 
 '''**************Solution is Here***********'''
 
-def main():
-    T = 1
-    # T = ii()
-    for _ in range(T):
-        n, k = li()
-        a = li()
+def business_logic():
+    t = int(input())
+
+    for _ in range(t):
+        s = input()
+
+        prefix = [[] for _ in range(10)]
+        suffix = [0] * 10
+        for i in range(len(s)):
+            nums = int(s[i])
+            prefix[nums].append(i)
+
+        m = int(input())
+        left = si()
+        right = si()
+        count_prefix = 0
+
+        for i in range(m):
+            for j in range(10):
+                while suffix[j] < len(prefix[j]) and prefix[j][suffix[j]] < count_prefix:
+                    suffix[j] += 1
+
+            count_suffix = count_prefix
+            for j in range(int(left[i]), int(right[i]) + 1):
+                if suffix[j] >= len(prefix[j]):
+                    count_suffix = len(s)
+                else:
+                    count_suffix = max(count_suffix, prefix[j][suffix[j]])
+
+            count_prefix = count_suffix + 1
+
+        if count_prefix >= len(s) + 1:
+            print("YES")
+        else:
+            print("NO")
+
 
     
 # End FASTIO
 if __name__ == "__main__":
-    main()
-
-
+# Call the function
+    business_logic()

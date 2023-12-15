@@ -2,8 +2,68 @@
                    BISMILLAHIR RAHMANIR RAHIM
 \****************************************************************/
 
-#include <bits/stdc++.h>
-using namespace std;
+#include <iostream>
+#include <iomanip>
+#include <chrono>
+ 
+#include <cmath>
+#include <string>
+#include <algorithm>
+#include <iterator>
+  
+#include <set>
+#include <map>
+#include <list>
+#include <stack>
+#include <tuple>
+#include <queue>
+#include <deque>
+#include <vector>
+
+#include <utility>
+#include <bitset>
+#include <limits.h>
+ 
+
+using std::get;
+using std::sort;
+using std::stoi;
+
+using std::find;
+using std::copy;
+using std::move;
+using std::swap;
+using std::fixed;
+using std::getline;
+
+using std::make_pair;
+using std::to_string;
+using std::upper_bound;
+using std::lower_bound;
+using std::setprecision;
+ 
+using std::cin;
+using std::cout;
+using std::cerr;
+
+using std::set;
+using std::map;
+using std::list;
+using std::tuple;
+using std::stack;
+using std::queue;
+using std::deque;
+using std::string;
+using std::vector;
+
+using std::pair;
+using std::less;
+using std::bitset;
+using std::greater;
+using std::unordered_map;
+using std::priority_queue;
+using std::istream_iterator;
+using std::ostream_iterator;
  
  
 typedef long double                         ld;
@@ -106,7 +166,7 @@ void file()
         freopen("output.txt", "w+", stdout);
     #endif
 
-    
+   
 }
 
 void config()
@@ -173,21 +233,58 @@ int32_t main()
     return 0;
 }
 
+ll f(ll val, vector<ll> &a){
+ ll r = 0;
+ for (ll i:a){
+  ll nr = r + i;
+  if (r>=val && nr<val){
+   nr = val;
+  }
+  r = nr;
+ }
+ return r;
+}
+
 void business_logic()
 {
-    ll n=0, m=0, x=0, y=0;
-    string st, sp="";
-    
-    // cin >> n >> m;
-    // St = read_string();
-    // vll vec {istream_iterator<ll>(cin), istream_iterator<ll>()};
-    // copy(vec.begin(), vec.end(), ostream_iterator<ll>(cout, " "));
-    
-    cin >> n;
-    vll vec1(n); f0(i,n) cin >> vec1[i];
-    vll vec2(n); f0(i,n) cout << vec1[i] << " ";
+ ll n;
+ cin >> n;
 
+ vector<ll> a(n);
+ ll curr = 0;
+ ll l=LLONG_MAX, r = LLONG_MIN;
+ vector<ll> options = {0};
 
+ for (ll i=0; i<n; i++){
+  cin >> a[i];
+  curr += a[i];
+  options.push_back(curr);
+  r = max(r, curr);
+  l = min(l, curr);
+ }
 
-    
+    sort(begin(options), end(options));
+ ll mx = LLONG_MIN, ans = 0;
+ l = 0, r = options.size()-1;
+
+    while (r-l>3) {
+        ll m1 = l + (r - l) / 3;
+        ll m2 = r - (r - l) / 3;
+        ll f1 = f(m1, a);      
+        ll f2 = f(m2, a);      
+        if (f1 < f2)
+            l = m1;
+        else
+            r = m2;
+    }
+
+    for (ll i=l; i<=r; i++){
+     ll val = f(options[i], a);
+     if (val > mx){
+      mx = val;
+      ans = options[i];
+     }
+    }
+
+    cout << ans << endl;
 }

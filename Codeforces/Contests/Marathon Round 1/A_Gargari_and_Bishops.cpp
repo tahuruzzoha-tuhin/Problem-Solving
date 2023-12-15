@@ -2,8 +2,67 @@
                    BISMILLAHIR RAHMANIR RAHIM
 \****************************************************************/
 
-#include <bits/stdc++.h>
-using namespace std;
+#include <iostream>
+#include <iomanip>
+#include <chrono>
+ 
+#include <cmath>
+#include <string>
+#include <algorithm>
+#include <iterator>
+  
+#include <set>
+#include <map>
+#include <list>
+#include <stack>
+#include <tuple>
+#include <queue>
+#include <deque>
+#include <vector>
+
+#include <utility>
+#include <bitset>
+ 
+using std::min;
+using std::max;
+using std::get;
+using std::sort;
+using std::stoi;
+
+using std::find;
+using std::copy;
+using std::move;
+using std::swap;
+using std::fixed;
+using std::getline;
+
+using std::make_pair;
+using std::to_string;
+using std::upper_bound;
+using std::lower_bound;
+using std::setprecision;
+ 
+using std::cin;
+using std::cout;
+using std::cerr;
+
+using std::set;
+using std::map;
+using std::list;
+using std::tuple;
+using std::stack;
+using std::queue;
+using std::deque;
+using std::string;
+using std::vector;
+
+using std::pair;
+using std::less;
+using std::bitset;
+using std::greater;
+using std::priority_queue;
+using std::istream_iterator;
+using std::ostream_iterator;
  
  
 typedef long double                         ld;
@@ -12,13 +71,10 @@ typedef long long                           ll;
 typedef unsigned long long                  ull;
 
 typedef vector<int>                         vi;
-typedef vector<vi>                          vvi;
 typedef vector<ld>                          vld;
 typedef vector<ui>                          vui;
 typedef vector<ll>                          vll;
-typedef vector<vll>                         vvll;
 typedef vector<ull>                         vull;
-typedef vector<vull>                        vvull;
 
 typedef list<int>                           lsi;
 typedef list<ld>                            lsld;
@@ -39,16 +95,9 @@ typedef pair<ld, ld>                        pld;
 
 typedef vector <pii>                        vpii;
 typedef vector <pair <ll, pii>>             vpp;
-typedef map<int, int>                       mii;
-typedef map<pii, int>                       mpii;
-typedef map<ll, ll>                         mll;
-typedef map<pll, ll>                        mpll;
-
-typedef unordered_map<int, int>             umii;
-typedef unordered_map<ll, ll>               umll;
-typedef unordered_map<char, int>            umci;
-typedef unordered_map<char, ll>             umcl;
-
+typedef map <int, int>                      mii;
+typedef map <ll, ll>                        mll;
+typedef map <pii, ll>                       mpi;
 
 #define endl                                "\n"
 #define vsz(x)                              ((ll) x.size())
@@ -106,7 +155,7 @@ void file()
         freopen("output.txt", "w+", stdout);
     #endif
 
-    
+   
 }
 
 void config()
@@ -128,6 +177,12 @@ void config()
 
 }
 
+bool isPrime(ll n)
+{
+    if (n <= 1) return false;for (ll i = 2; i < n; i++) 
+    if (n % i == 0) return false; return true;
+}
+
 string read_string() {
     string s; ui uc; ui c;
     while ((uc = (ui)getchar()) <= 32u);
@@ -136,58 +191,42 @@ string read_string() {
     return s;
 }
 
-bool isPrime(ll n)
-{
-    if (n <= 1) return false;for (ll i = 2; i < n; i++) 
-    if (n % i == 0) return false; return true;
-}
-
-umll check_freq_int(vector<ll> x) {
-    umll freq;
-    for (auto num : x) {
-        freq[num]++;
-    }
-    return freq;
-}
-
-umcl check_freq_string(string x) {
-    umcl freq;
-    for (auto c : x) {
-        freq[c]++;
-    }
-    return freq;
-}
-void business_logic();
+void Accepted();
 
 int32_t main()
 {
-    config();    
+    config();
+    
     int Test_case  = 1;
-    cin >> Test_case;
+    // cin >> Test_case;
     for(int Case=1; Case<=Test_case; Case++){
-        // cout << "Case " << Case << ": " << business_logic() << endl;
-        business_logic();
+        // cout << "Case " << Case << ": " << Accepted() << endl;
+        Accepted();
     }
-    // while(Test_kase--) business_logic();
-    // TLE;
+    // while(Test_kase--) Accepted();
+    TLE;
     return 0;
 }
 
-void business_logic()
+void Accepted()
 {
-    ll n=0, m=0, x=0, y=0;
-    string st, sp="";
-    
-    // cin >> n >> m;
-    // St = read_string();
-    // vll vec {istream_iterator<ll>(cin), istream_iterator<ll>()};
-    // copy(vec.begin(), vec.end(), ostream_iterator<ll>(cout, " "));
+    int n=0, m=0;
+    ll a=0, b=0, c=0, p=0, q=0, r=0;
+    string St, Sp="";
     
     cin >> n;
-    vll vec1(n); f0(i,n) cin >> vec1[i];
-    vll vec2(n); f0(i,n) cout << vec1[i] << " ";
-
-
-
+    int chess[n][n]={0};
+    for (int i=0; i<n; i++){
+        for (int j=0; j<n; j++){
+            cin >> chess[i][j];
+        }
+    }
+    
+    for (int i=0; i<n; i++){
+        for (int j=0; j<n; j++){
+            cout << chess[i][j] << " ";
+        }
+        cout << endl;
+    }
     
 }

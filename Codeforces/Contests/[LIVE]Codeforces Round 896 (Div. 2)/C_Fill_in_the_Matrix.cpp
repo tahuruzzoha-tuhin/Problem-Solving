@@ -2,8 +2,68 @@
                    BISMILLAHIR RAHMANIR RAHIM
 \****************************************************************/
 
-#include <bits/stdc++.h>
-using namespace std;
+#include <iostream>
+#include <iomanip>
+#include <chrono>
+ 
+#include <cmath>
+#include <string>
+#include <algorithm>
+#include <iterator>
+  
+#include <set>
+#include <map>
+#include <list>
+#include <stack>
+#include <tuple>
+#include <queue>
+#include <deque>
+#include <vector>
+
+#include <utility>
+#include <bitset>
+#include <limits.h>
+ 
+
+using std::get;
+using std::sort;
+using std::stoi;
+
+using std::find;
+using std::copy;
+using std::move;
+using std::swap;
+using std::fixed;
+using std::getline;
+
+using std::make_pair;
+using std::to_string;
+using std::upper_bound;
+using std::lower_bound;
+using std::setprecision;
+ 
+using std::cin;
+using std::cout;
+using std::cerr;
+
+using std::set;
+using std::map;
+using std::list;
+using std::tuple;
+using std::stack;
+using std::queue;
+using std::deque;
+using std::string;
+using std::vector;
+
+using std::pair;
+using std::less;
+using std::bitset;
+using std::greater;
+using std::unordered_map;
+using std::priority_queue;
+using std::istream_iterator;
+using std::ostream_iterator;
  
  
 typedef long double                         ld;
@@ -106,7 +166,7 @@ void file()
         freopen("output.txt", "w+", stdout);
     #endif
 
-    
+   
 }
 
 void config()
@@ -173,21 +233,57 @@ int32_t main()
     return 0;
 }
 
+
 void business_logic()
 {
     ll n=0, m=0, x=0, y=0;
-    string st, sp="";
-    
-    // cin >> n >> m;
-    // St = read_string();
-    // vll vec {istream_iterator<ll>(cin), istream_iterator<ll>()};
-    // copy(vec.begin(), vec.end(), ostream_iterator<ll>(cout, " "));
-    
-    cin >> n;
-    vll vec1(n); f0(i,n) cin >> vec1[i];
-    vll vec2(n); f0(i,n) cout << vec1[i] << " ";
 
+    cin >> n >> m;
+    x = n;
+    y = m;
+    if(m==1){
+        cout << 0 << endl;
+        while(n--) {
+            cout << 0 << endl;
+        }
+    } else {
+        if(n >= m){
+            cout << m << endl;
+            
+            ll element = 1;
+            for(ll k=0; k<m-1; k++) {
+                ll MEX =0;
+                for(ll i=element; MEX<m; i=(i+1)%m, MEX++){
+                    cout << i << " ";
+                }
+                cout << endl;
+                element += 1;
+            }
 
+            ll let = n-m+1;
+            element = m-1;
+            while(let--){
+                ll MEX = 0;
+                for(ll i=element; MEX<m; i=(i+1)%m, MEX++){
+                    cout << i << " ";
+                }
+                cout << endl;
+            }
+
+        } else {
+            
+            cout << n+1 << endl;
+            ll fill = 1;
+            for(ll h=0; h<n; h++) {
+                ll MEX =0;
+                for(ll i=fill; MEX<m; i=(i+1)%m, MEX++){
+                    cout << i << " ";
+                }
+                cout << endl;
+                fill += 1;
+            }
+        }
+    }
 
     
 }

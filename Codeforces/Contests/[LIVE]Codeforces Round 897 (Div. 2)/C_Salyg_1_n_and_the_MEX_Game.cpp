@@ -2,10 +2,71 @@
                    BISMILLAHIR RAHMANIR RAHIM
 \****************************************************************/
 
+#include <iostream>
+#include <iomanip>
+#include <chrono>
+ 
+#include <cmath>
+#include <string>
+#include <algorithm>
+#include <iterator>
+  
+#include <set>
+#include <map>
+#include <list>
+#include <stack>
+#include <tuple>
+#include <queue>
+#include <deque>
+#include <vector>
+
+#include <utility>
+#include <bitset>
+#include <limits.h>
 #include <bits/stdc++.h>
-using namespace std;
  
+
+using std::get;
+using std::sort;
+using std::stoi;
+
+using std::find;
+using std::copy;
+using std::move;
+using std::swap;
+using std::fixed;
+using std::getline;
+
+using std::make_pair;
+using std::to_string;
+using std::upper_bound;
+using std::lower_bound;
+using std::setprecision;
  
+using std::cin;
+using std::cout;
+using std::cerr;
+
+using std::set;
+using std::map;
+using std::list;
+using std::tuple;
+using std::stack;
+using std::queue;
+using std::deque;
+using std::string;
+using std::vector;
+
+using std::pair;
+using std::less;
+using std::bitset;
+using std::greater;
+using std::unordered_map;
+using std::priority_queue;
+using std::istream_iterator;
+using std::ostream_iterator;
+ 
+using namespace std; 
 typedef long double                         ld;
 typedef unsigned                            ui;
 typedef long long                           ll;
@@ -106,7 +167,7 @@ void file()
         freopen("output.txt", "w+", stdout);
     #endif
 
-    
+   
 }
 
 void config()
@@ -173,9 +234,19 @@ int32_t main()
     return 0;
 }
 
+int question(){
+    int y; cin >> y ;
+    cout << endl;
+    return y;
+}
+
+void answer(int x){
+    cout << x << endl;
+}
+
 void business_logic()
 {
-    ll n=0, m=0, x=0, y=0;
+    int n=0, m=0, x=0;
     string st, sp="";
     
     // cin >> n >> m;
@@ -184,10 +255,37 @@ void business_logic()
     // copy(vec.begin(), vec.end(), ostream_iterator<ll>(cout, " "));
     
     cin >> n;
-    vll vec1(n); f0(i,n) cin >> vec1[i];
-    vll vec2(n); f0(i,n) cout << vec1[i] << " ";
+    vi vec1(n); f0(i,n) cin >> vec1[i];
 
+    int mex_game = -1;
+    f0(i,n){
+        if(vec1[i]!=i){
+            mex_game = i;
+            break;
+        }
+    }
+    if(mex_game==-1){
+        mex_game=n;
+    }
 
-
+    answer(mex_game);
     
+    int salyg = question();
+    
+    // while(salyg!=0){
+    //     mex_game = salyg;
+
+    //     answer(mex_game);
+
+    //     salyg = question();
+    // }
+    while(salyg!=-1){
+        mex_game = salyg;
+
+        answer(mex_game);
+
+        salyg = question();
+    }
+    // cout.flush();
+    fflush(stdout);
 }

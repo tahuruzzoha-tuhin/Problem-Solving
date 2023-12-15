@@ -2,8 +2,68 @@
                    BISMILLAHIR RAHMANIR RAHIM
 \****************************************************************/
 
-#include <bits/stdc++.h>
-using namespace std;
+#include <iostream>
+#include <iomanip>
+#include <chrono>
+ 
+#include <cmath>
+#include <string>
+#include <algorithm>
+#include <iterator>
+  
+#include <set>
+#include <map>
+#include <list>
+#include <stack>
+#include <tuple>
+#include <queue>
+#include <deque>
+#include <vector>
+
+#include <utility>
+#include <bitset>
+#include <limits.h>
+ 
+
+using std::get;
+using std::sort;
+using std::stoi;
+
+using std::find;
+using std::copy;
+using std::move;
+using std::swap;
+using std::fixed;
+using std::getline;
+
+using std::make_pair;
+using std::to_string;
+using std::upper_bound;
+using std::lower_bound;
+using std::setprecision;
+ 
+using std::cin;
+using std::cout;
+using std::cerr;
+
+using std::set;
+using std::map;
+using std::list;
+using std::tuple;
+using std::stack;
+using std::queue;
+using std::deque;
+using std::string;
+using std::vector;
+
+using std::pair;
+using std::less;
+using std::bitset;
+using std::greater;
+using std::unordered_map;
+using std::priority_queue;
+using std::istream_iterator;
+using std::ostream_iterator;
  
  
 typedef long double                         ld;
@@ -106,7 +166,7 @@ void file()
         freopen("output.txt", "w+", stdout);
     #endif
 
-    
+   
 }
 
 void config()
@@ -185,7 +245,23 @@ void business_logic()
     
     cin >> n;
     vll vec1(n); f0(i,n) cin >> vec1[i];
-    vll vec2(n); f0(i,n) cout << vec1[i] << " ";
+    // vll vec2(n); f0(i,n) cout << vec1[i] << " ";
+    umii green_gold_dog;
+    vpii permutation(n);
+
+    f0(i,n){
+        permutation[i].first = vec1[i];
+        permutation[i].second = i;
+    }
+    sorta(permutation); int array_count = n;
+    f0(i,n){
+        green_gold_dog[permutation[i].second] = array_count;
+        array_count--;
+    }
+    f0(i,n){
+        cout << green_gold_dog[i] << " ";
+    }
+    cout << endl;
 
 
 

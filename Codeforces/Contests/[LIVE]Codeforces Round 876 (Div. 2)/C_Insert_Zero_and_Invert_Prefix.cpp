@@ -2,8 +2,68 @@
                    BISMILLAHIR RAHMANIR RAHIM
 \****************************************************************/
 
-#include <bits/stdc++.h>
-using namespace std;
+#include <iostream>
+#include <iomanip>
+#include <chrono>
+ 
+#include <cmath>
+#include <string>
+#include <algorithm>
+#include <iterator>
+   
+#include <set>
+#include <map>
+#include <list>
+#include <stack>
+#include <tuple>
+#include <queue>
+#include <deque>
+#include <vector>
+
+#include <utility>
+#include <bitset>
+#include <limits.h>
+ 
+
+using std::get;
+using std::sort;
+using std::stoi;
+
+using std::find;
+using std::copy;
+using std::move;
+using std::swap;
+using std::fixed;
+using std::getline;
+
+using std::make_pair;
+using std::to_string;
+using std::upper_bound;
+using std::lower_bound;
+using std::setprecision;
+ 
+using std::cin;
+using std::cout;
+using std::cerr;
+
+using std::set;
+using std::map;
+using std::list;
+using std::tuple;
+using std::stack;
+using std::queue;
+using std::deque;
+using std::string;
+using std::vector;
+
+using std::pair;
+using std::less;
+using std::bitset;
+using std::greater;
+using std::unordered_map;
+using std::priority_queue;
+using std::istream_iterator;
+using std::ostream_iterator;
  
  
 typedef long double                         ld;
@@ -106,7 +166,7 @@ void file()
         freopen("output.txt", "w+", stdout);
     #endif
 
-    
+   
 }
 
 void config()
@@ -175,19 +235,54 @@ int32_t main()
 
 void business_logic()
 {
-    ll n=0, m=0, x=0, y=0;
+    ll  m=0, x=0, y=0;
     string st, sp="";
     
-    // cin >> n >> m;
-    // St = read_string();
-    // vll vec {istream_iterator<ll>(cin), istream_iterator<ll>()};
-    // copy(vec.begin(), vec.end(), ostream_iterator<ll>(cout, " "));
+    // // cin >> n >> m;
+    // // St = read_string();
+    // // vll vec {istream_iterator<ll>(cin), istream_iterator<ll>()};
+    // // copy(vec.begin(), vec.end(), ostream_iterator<ll>(cout, " "));
     
-    cin >> n;
-    vll vec1(n); f0(i,n) cin >> vec1[i];
-    vll vec2(n); f0(i,n) cout << vec1[i] << " ";
+    // cin >> n;
+    // vll vec1(n); f0(i,n) cin >> vec1[i];
+    // vll vec2(n); f0(i,n) cout << vec1[i] << " ";
 
+    ll n; cin >> n;
+    vll sequence(n);
+    
+    f0(i,n) cin >> sequence[i];    
+    if (sequence[n - 1] == 0) {
+        YES;
+        ll i = n - 1;
+        while (i >= 0) {
+            ll one = i, prefix = 0, zero = 0;
+            while (one >= 0 && prefix <= sequence[one]) {
+                prefix = sequence[one];
+                zero += sequence[one];
+                one--;
+        //                 size = int(input())
+        // arr = list(map(int, input().split()))
 
-
+        // if arr[-1]:
+        //     print("NO")
+        // else:
+        //     print("YES")
+        //     indices = []
+        //     rev = 0
+        //     indices = find_indices(size, arr, rev, indices)
+        //     indices.reverse()
+        //     print(*indices)
+            }
+            ll p = one+1, q = i;
+            for (ll l = p; l < q; l++) cout << "0 ";
+            cout << zero << " ";
+            i = one;        
+        }
+        cout << endl;
+             // if arr[-1]:
+        //     print("NO")
+        // else:
+        //     print("YES")
+    } else NO;
     
 }
